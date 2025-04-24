@@ -56,6 +56,16 @@
       }
     }
     </script>
+
+    <script>
+        (function() {
+            const domain = 'natty4.vercel.app';
+            const apiKey = 'a3LoXgJ3C';
+            fetch(`${window.location.origin}/api/visit/${domain}?key=${apiKey}`)
+            .then(response => response.json())
+            .then(data => console.log('Visit recorded:', data));
+        })();
+    </script>
 </head>
 <body>
     <!-- Skip to main content for accessibility -->
@@ -684,27 +694,33 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__content">
-                <div class="footer__info">
-                    <a href="/" class="logo logo--footer">
-                        <span class="logo__text">&lambda;</span>
-                    </a>
-                    <p class="footer__tagline">Python Backend Developer & ML Engineer</p>
-                </div>
-                
+        
+            <div class="footer__main">
+                <a href="/" class="logo logo--footer">
+                <span class="logo__text">&lambda;</span>
+                </a>
+        
+                <p class="footer__tagline">Python Backend Developer & ML Engineer</p>
+        
                 <nav class="footer__nav">
-                    <ul class="footer__menu">
-                        <li class="footer__item"><a href="#about" class="footer__link">About</a></li>
-                        <li class="footer__item"><a href="#experience" class="footer__link">Experience</a></li>
-                        <li class="footer__item"><a href="#projects" class="footer__link">Projects</a></li>
-                        <li class="footer__item"><a href="#skills" class="footer__link">Skills</a></li>
-                        <li class="footer__item"><a href="#contact" class="footer__link">Contact</a></li>
-                    </ul>
+                <ul class="footer__menu">
+                    <li class="footer__item"><a href="#about" class="footer__link">About</a></li>
+                    <li class="footer__item"><a href="#experience" class="footer__link">Experience</a></li>
+                    <li class="footer__item"><a href="#projects" class="footer__link">Projects</a></li>
+                    <li class="footer__item"><a href="#skills" class="footer__link">Skills</a></li>
+                    <li class="footer__item"><a href="#contact" class="footer__link">Contact</a></li>
+                </ul>
                 </nav>
-                
-                <div class="footer__legal">
-                    <p class="footer__copyright">&copy; 2025 Natnael. All rights reserved.</p>
-                    <p class="footer__credits">Grateful for your time! wishing you purpose and peace in your work <span aria-hidden="true">💙</span></p>
-                </div>
+        
+                <p class="footer__credits">
+                    Grateful for your time! Wishing you purpose and peace in your work <span aria-hidden="true">💙</span>
+                </p>
+            </div>
+        
+            <div class="footer__copyright">
+                &copy; 2025 Natnael. All rights reserved.
+            </div>
+        
             </div>
         </div>
     </footer>

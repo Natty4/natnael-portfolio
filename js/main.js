@@ -223,7 +223,7 @@ function createCodeAnimation() {
     .code-container {
       padding: 20px;
       font-family: 'Courier New', monospace;
-      color:#4d4d0c;
+      color: #78780b;
       height: 100%;
       overflow: auto;
     }

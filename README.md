@@ -29,4 +29,6 @@ A modern, responsive portfolio website showcasing My expertise as a Python Backe
 ## License
 
 This project is open-source and available under the [MIT License](LICENSE).
-```
+
+---- 
+**Author**: Natnael K. Much Love 💙
