@@ -1,0 +1,6 @@
+# robots.txt for Natnael K. Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://natty4.vercel.app/sitemap.xml
