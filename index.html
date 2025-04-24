@@ -64,7 +64,7 @@
           const origin = 'https://visitapi-s28n.onrender.com';
           fetch(`${origin}/api/visit/${domain}?key=${apiKey}`)
             .then(response => response.json())
-            .then(data => console.log('Visit recorded:', data));
+            .then(data => console.log('Visit recorded'));
         })();
     </script>
 </head>
@@ -131,6 +131,7 @@
                     
                     <div class="hero__stats">
                         <div class="stat">
+                            
                             <span class="stat__number" id="visitCount">&lambda;</span>
                         </div>
                         <script>
@@ -142,7 +143,7 @@
                                 .then(response => response.json())
                                 .then(data => {
                                   document.getElementById('visitCount').textContent = 
-                                    `Total visits: ${data.total_visits}`;
+                                    `${<i class="fas fa-eye"></i>}: ${data.total_visits}`;
                                 });
                             })();
                         </script>
