@@ -455,6 +455,59 @@ ol {
   color: var(--color-primary);
 }
 
+.visit__count {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50px;
+  color: var(--color-text-light)
+}
+
+.visit__count .count__icon svg {
+  
+  display: inline-block;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* adjust depending on your layout */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  white-space: normal;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tooltip .tooltiptext a:hover {
+  text-decoration: underline;
+}
+
 .stat__label {
   font-size: 0.875rem;
   color: var(--color-text-light);

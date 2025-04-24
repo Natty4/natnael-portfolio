@@ -130,10 +130,24 @@
                     </div>
                     
                     <div class="hero__stats">
-                        <div class="stat">
-                            
-                            <span class="stat__number" id="visitCount">&lambda;</span>
-                        </div>
+                        <a href="https://visitapi-s28n.onrender.com/" target="_blank" rel="noopener noreferrer" class="tooltip">
+                            <div class="visit__count">
+                                <span class="tooltiptext">
+                                        Learn more about Visit Tracker
+                                </span>
+                                <span class="" id="visitCount">
+                                    &lambda;
+                                    
+                                </span>
+                                <span class="count__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        viewBox="0 0 16 16" style="vertical-align: middle;">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8a13.133 13.133 0 0 1-1.66 2.043C11.88 11.332 10.12 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.133 13.133 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </a>
                         <script>
                             (function() {
                               const domain = 'natty4.vercel.app';
@@ -142,9 +156,8 @@
                               fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
                                 .then(response => response.json())
                                 .then(data => {
-                                    document.getElementById('visitCount').innerHTML = 
-                                      `<i class="fas fa-eye"></i> ${data.total_visits}+`;
-                                  });
+                                    document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
+                                    });
                             })();
                         </script>
                         <!-- <div class="stat">
