@@ -130,9 +130,21 @@
                     
                     <div class="hero__stats">
                         <div class="stat">
-                            <span class="">3+</span>
-                            <span class="stat__label">Years Experience</span>
+                            <span class="stat__number" id="visitCount">Loading...</span>
                         </div>
+                        <div id="visitCount"></div>
+                        <script>
+                        (function() {
+                        const domain = 'natty4.vercel.app';
+                        const apiKey = 'a3LoXgJ3C';
+                        fetch(`${window.location.origin}/api/stats/${domain}?key=${apiKey}`)
+                            .then(response => response.json())
+                            .then(data => {
+                            document.getElementById('visitCount').textContent = 
+                                `Total visits: ${data.total_visits} Thanks for stopping by💙`;
+                            });
+                        })();
+                        </script>
                         <!-- <div class="stat">
                             <span class="">10+</span>
                             <span class="stat__label">Projects Completed</span>
