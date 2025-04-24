@@ -142,9 +142,9 @@
                               fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
                                 .then(response => response.json())
                                 .then(data => {
-                                  document.getElementById('visitCount').textContent = 
-                                    `👁️ ${data.total_visits} +`;
-                                });
+                                    document.getElementById('visitCount').innerHTML = 
+                                      `<i class="fas fa-eye"></i> ${data.total_visits}+`;
+                                  });
                             })();
                         </script>
                         <!-- <div class="stat">
