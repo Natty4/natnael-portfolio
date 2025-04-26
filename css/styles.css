@@ -20,7 +20,7 @@
 
   /* Primary UI Colors */
   --color-primary: #2563eb;     /* Blue-600 */
-  --color-primary-light: #60a5fa; 
+  --color-primary-light: #060b10; 
   --color-primary-dark: #1d4ed8; /* Blue-400 */
   --color-accent: #facc15;      /* Yellow-400 or secondary highlight */
 
@@ -155,21 +155,23 @@ html, body {
 
 .section {
   height: 100vh;
+  width: 100vw;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 1.5s ease, color 0.5s ease;
+  background-color: var(--color-background-alt);
+  filter: blur(6px);
+  opacity: 1;
+  transition:
+    filter 0.8s ease-out,
+    opacity 0.6s ease-in-out;
 }
 
-
-@media (max-width: 768px) {
-  .section {
-    padding: var(--space-12) 1rem;
-    align-items: flex-start;
-    justify-content: flex-start;
-    overflow-y: auto;
-  }
+.section--visible {
+  filter: blur(0);
+  opacity: 1;
 }
 
 .dark-mode .section {
@@ -199,7 +201,7 @@ html, body {
   pointer-events: none;
   z-index: 99999;
   background-color: var(--color-background-alt);
-  transition: transform 0.1s ease, background-color 0.2s ease, opacity 0.3s ease;
+  /* transition: transform 0.1s ease, background-color 0.2s ease, opacity 0.3s ease; */
   mix-blend-mode: difference;
   display: flex;
   align-items: center;
@@ -220,7 +222,19 @@ html, body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--color-text);
+  background-color: var(--color-background-alt);
+  color: var(--color-light);
+  font-family: var(--font-mono);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  text-align: left;
+  white-space: wrap;
+  overflow: wrap;
+  text-overflow: ellipsis;
+  z-index: 99999;
+  width: 200px;
+  
 }
 
 /* When cursor has label */
@@ -452,7 +466,36 @@ ol {
   display: block;
 }
 
+/* Mobile devices */
 @media (max-width: 768px) {
+  html, body {
+    scroll-snap-type: none !important;
+  }
+  body {
+    cursor: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: none;
+  }
+  .section {
+    scroll-snap-align: none;
+    padding: var(--space-12) 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: none !important;
+    height: auto !important;
+  }
+  #custom-cursor {
+    display: none;
+  }
+
+  .dot-slider, .dot {
+    display: none;
+  }
+  .hero-image, .code-animation {
+    display: none;
+  }
   .nav__menu {
     position: fixed;
     top: 80px;
@@ -1098,7 +1141,8 @@ ol {
 .skill-category__title {
   font-size: 1.5rem;
   margin-bottom: var(--space-6);
-  color: var(--color-text);
+  color: var(--color-light);
+
 }
 
 .skill-list {
@@ -1275,6 +1319,7 @@ ol {
   font-size: 1.125rem;
   font-weight: 600;
   margin-bottom: var(--space-2);
+  color: var(--color-text);
 }
 
 .certification__description {
@@ -1428,77 +1473,6 @@ ol {
 }
 
 /* Footer */
-.footer {
-  background-color: var(--color-secondary);
-  color: var(--color-text-light);
-  padding: var(--space-3) 0;
-}
-
-.footer__content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  align-items: center;
-  
-}
-
-.footer__main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
- 
-  
-}
-
-.logo--footer {
-  margin: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px;
-
-}
-
-.footer__tagline {
-  font-size: 0.875rem;
-  color: var(--color-text-light);
-}
-
-.footer__menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer__link {
-  color: var(--color-text-light);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.footer__link::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: var(--color-primary);
-  transition: width 0.3s ease;
-}
-
-.footer__link:hover::after {
-  width: 100%;
-}
-
-.footer__link:hover {
-  color: var(--color-primary);
-}
-
-
 
 .footer-modal {
   position: fixed;
@@ -1568,6 +1542,12 @@ ol {
   margin-inline: auto;
 }
 
+.footer__summary p {
+  text-align: center;
+  
+  
+}
+
 .footer__table {
   width: 100%;
   border-collapse: collapse;
@@ -1576,6 +1556,7 @@ ol {
   color: var(--color-text-light);
   overflow-x: auto;
   display: block;
+  
 }
 
 .footer__table td {
@@ -1732,7 +1713,7 @@ ol {
 .dot:hover {
   background-color: var(--color-primary);
   box-shadow: var(--shadow-lg);
-  width: 5px;
+  width: 8px;
   height: 24px;
 
 }

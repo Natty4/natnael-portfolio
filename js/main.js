@@ -262,22 +262,38 @@ createCodeAnimation()
 // Footer Modal
 const footerModal = document.getElementById('footerModal');
 const closeBtn = document.getElementById('closeFooterModal');
+const footerTrigger = document.getElementById('footer-trigger');
 
-const observer = new IntersectionObserver(
+const footerObserver = new IntersectionObserver(
   ([entry]) => {
     footerModal.classList.toggle('active', entry.isIntersecting);
   },
   {
-    root: null,
-    threshold: 1.0,
+    threshold: 0.2, // Better for mobile, adjust if needed
   }
 );
 
-observer.observe(document.getElementById('footer-trigger'));
+footerObserver.observe(footerTrigger);
 
 closeBtn.addEventListener('click', () => {
   footerModal.classList.remove('active');
 });
+
+// Section Visibility
+const sections = document.querySelectorAll('.section');
+
+const sectionObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('section--visible');
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+sections.forEach(section => sectionObserver.observe(section));
 
 // Dot Slider
 document.addEventListener("DOMContentLoaded", function () {
