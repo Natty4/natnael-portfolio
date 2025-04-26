@@ -143,7 +143,6 @@
                                 .then(response => response.json())
                                 .then(data => {
                                     document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
-                                    console.log('Visit count:', data.total_visits, data);
                                     });
                             })();
                         </script>
