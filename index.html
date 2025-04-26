@@ -59,7 +59,7 @@
 
     <script>
         (function() {
-          const domain = 'Natty4.vercel.app';
+          const domain = 'natty4.vercel.app';
           const apiKey = '9PGOSlLsz';
           const origin = 'https://visitapi-s28n.onrender.com';
           fetch(`${origin}/api/visit/${domain}?key=${apiKey}`)
@@ -108,7 +108,7 @@
                 <div class="hero__content">
                     <span class="hero__eyebrow">Python Backend Developer | ML Engineer</span>
                     <h1 class="hero__title">Natnael</h1>
-                    <p class="hero__subtitle">Building scalable web applications and machine learning solutions remotely from Addis Ababa, Ethiopia</p>
+                    <p class="hero__subtitle">Engineering scalable software and AI solution, contributing to a better, smarter world.</p>
                     
                     <div class="hero__cta">
                         <a href="#contact" class="btn btn--primary">Get in Touch</a>
@@ -136,13 +136,14 @@
                         </a>
                         <script>
                             (function() {
-                              const domain = 'Natty4.vercel.app';
+                              const domain = 'natty4.vercel.app';
                               const apiKey = '9PGOSlLsz';
                               const origin = 'https://visitapi-s28n.onrender.com';
                               fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
                                 .then(response => response.json())
                                 .then(data => {
                                     document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
+                                    console.log('Visit count:', data.total_visits, data);
                                     });
                             })();
                         </script>
@@ -173,11 +174,14 @@
                     <div class="about__content">
                         <button class="about__cta-btn">More About Me</button>
                         <div class="about__text">
-                            <p>A <strong>Software Engineer</strong> with years of experience building scalable APIs, automation tools, 
-                                and ML apps using 
-                                <strong>Python</strong>, and more other tech tools.
+                            <p> I’m a <strong>Software Engineer</strong> specializing in scalable backend systems, automation workflows, and machine learning applications, primarily powered by 
+                                <strong>Python</strong> and a modern tech stack (<strong>Technology</strong>). 
+                            </p> 
+                            <p> Grounded in a strong Computer Science and Engineering foundation, I approach problems with a <strong>solution</strong>-oriented mindset. 
+                                I write clean, efficient code, adapt quickly to evolving tools, and thrive in distributed, cross-functional teams across the globe. 
+                                <i class="fas fa-globe"></i> 
                             </p>
-                            <p>With a strong foundation in Computer Science and Engineering, I value clean code, adaptability, and delivering high-impact solutions in remote, async teams.</p>
+                                 
                         </div>
                         
                         <div class="about__cta">
@@ -222,7 +226,7 @@
             <div class="container">
               <h2 class="section__title">Hands On Experience</h2>
           
-              <div class="timeline-slider" data-cursor-label="←  → ">
+              <div class="timeline-slider" data-cursor-label="←→">
                 <!-- Slide 1 -->
                 <div class="timeline-slide timeline">
                     <div class="timeline__item">
