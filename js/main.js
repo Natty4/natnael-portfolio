@@ -1,7 +1,39 @@
-// Main JavaScript for Natnael 's Portfolio
+// Main JavaScript 
 
-const codeAnimation = document.getElementById("codeAnimation")
+
+const cursor = document.getElementById('custom-cursor');
+const label = document.getElementById('cursor-label');
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+});
+
+  // Detect elements with custom label on hover
+  document.querySelectorAll('[data-cursor-label]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      label.textContent = el.getAttribute('data-cursor-label');
+      cursor.classList.add('active');
+    });
+    el.addEventListener('mouseleave', () => {
+      label.textContent = '';
+      cursor.classList.remove('active');
+    });
+  });
+
+  const customCursor = document.getElementById("custom-cursor");
+
+  document.querySelectorAll("a, button, [role='button'], input, textarea, select").forEach((el) => {
+    el.addEventListener("mouseenter", () => {
+      customCursor.style.opacity = "0";
+    });
+    el.addEventListener("mouseleave", () => {
+      customCursor.style.opacity = "1";
+    });
+  });
+
+  
 document.addEventListener("DOMContentLoaded", () => {
+
   // Mobile Navigation Toggle
   const navToggle = document.querySelector(".nav-toggle")
   const navMenu = document.querySelector(".nav__menu")
@@ -79,27 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  // Animate skill bars on scroll
-  const skillBars = document.querySelectorAll(".skill-item__progress")
 
-  function animateSkillBars() {
-    skillBars.forEach((bar) => {
-      const barPosition = bar.getBoundingClientRect().top
-      const screenPosition = window.innerHeight / 1.2
-
-      if (barPosition < screenPosition) {
-        bar.style.width = bar.style.width || bar.getAttribute("style").split("width:")[1].trim()
-      } else {
-        bar.style.width = "0%"
-      }
-    })
-  }
-
-  // Initial check for elements in viewport
-  animateSkillBars()
-
-  // Check on scroll
-  window.addEventListener("scroll", animateSkillBars)
 
   // Header scroll effect
   const header = document.querySelector(".header")
@@ -108,24 +120,21 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", () => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
-    if (scrollTop > 100) {
-      header.style.boxShadow = "var(--shadow-lg)"
-    } else {
-      header.style.boxShadow = "var(--shadow-md)"
-    }
-
     lastScrollTop = scrollTop
   })
 })
 
 
+
 // Code Animation
+const codeAnimation = document.getElementById("codeAnimation")
 function createCodeAnimation() {
   if (!codeAnimation) return
   
   const codeLines = [
     "def analyze_developers(dataset):",
-    '    """Process dev data and match skills to job requirements."""',
+    '    """Process dev data and ',
+    '    match skills to job requirements."""',
     "    results = {}",
     "    ",
     "    # Preprocess developer dataset",
@@ -135,15 +144,19 @@ function createCodeAnimation() {
     "    features = extract_skills(clean_data)",
     "    ",
     "    # Load job position requirements",
-    "    job_requirements = load_job_description(\"position.json\")",
-    "    ",
-    "    # Train matching model",
-    "    model = train_skill_matcher(features, job_requirements)",
-    "    ",
+    "    job_requirements = load_job_desc(",
+    "        \"position.json\"",
+    "    )",
+    "",
+    "    # Train matching model", 
+    "    model = train_skill_matcher(",
+    "         features, job_requirements",  
+    "    )",
     "    # Match developers to job",
     "    matches = model.predict(clean_data)",
     "    ",
-    "    results[\"top_match\"] = matches[0]  # Best candidate",
+    "    # Best candidate",
+    "    results[\"top_match\"] = matches[0] ",
     "    return results",
     "    ",
     "class SkillMatcherModel:",
@@ -151,23 +164,25 @@ function createCodeAnimation() {
     "        self.config = config or {}",
     "        self.model = None",
     "    ",
-    "    def train(self, skills, requirements):",
-    '        print("Training skill-matching model...")',
-    "        self.model = self._build_model(skills, requirements)",
+    "    def train(self, skills, reqrs):",
+    '        print("Training model...")',
+    "        self.model = self._build_model(",
+    "        skills, reqrs)",
     "        return self",
     "    ",
     "    def predict(self, data):",
     "        if self.model is None:",
-    '            raise ValueError("Model not trained")',
+    '            raise ValueError("Not trained")',
     "        return self.model.match(data)",
     "    ",
     "# Main execution",
     'if __name__ == "__main__":',
-    '    dev_data = load_dataset("developers.csv")',
+    '    dev_data = load_dataset("devs.csv")',
     "    results = analyze_developers(dev_data)",
-    '    print(f"Top candidate: {results[\'top_match\']}")',
+    '    print(f"Top match: ',
+    "    results[\"top_match\"])",
     '   ',
-    '# Output: Top candidate: Natnael K. (match: 96.5%)',
+    '# Output: Top match: alex K. (match: 96.5%)',
   ];
 
   // Create code container
@@ -223,7 +238,7 @@ function createCodeAnimation() {
     .code-container {
       padding: 20px;
       font-family: 'Courier New', monospace;
-      color: #78780b;
+      background-color: var(--color-background-alt);
       height: 100%;
       overflow: auto;
     }
@@ -234,7 +249,7 @@ function createCodeAnimation() {
     }
     
     .light-theme .code-container {
-      color: #272822;
+      color: var(--color-text);
     }
   `
   document.head.appendChild(style)
@@ -242,3 +257,65 @@ function createCodeAnimation() {
 
 // Initialize code animation
 createCodeAnimation()
+
+
+// Footer Modal
+const footerModal = document.getElementById('footerModal');
+const closeBtn = document.getElementById('closeFooterModal');
+
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    footerModal.classList.toggle('active', entry.isIntersecting);
+  },
+  {
+    root: null,
+    threshold: 1.0,
+  }
+);
+
+observer.observe(document.getElementById('footer-trigger'));
+
+closeBtn.addEventListener('click', () => {
+  footerModal.classList.remove('active');
+});
+
+// Dot Slider
+document.addEventListener("DOMContentLoaded", function () {
+  const dots = document.querySelectorAll(".dot");
+  const sections = document.querySelectorAll("section");
+  // Click scroll
+  dots.forEach((dot) => {
+    dot.addEventListener("click", function () {
+      const target = document.querySelector(dot.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  // Scroll active highlight
+  window.addEventListener("scroll", function () {
+    let currentSection = null;
+    const scrollY = window.scrollY + window.innerHeight / 2;
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        currentSection = section;
+      }
+    });
+
+    dots.forEach((dot) => dot.classList.remove("active"));
+
+    if (currentSection) {
+     
+      const activeDot = document.querySelector(
+        `.dot[data-target="#${currentSection.id}"]`
+      );
+      if (activeDot) activeDot.classList.add("active");
+      
+    }
+  });
+});

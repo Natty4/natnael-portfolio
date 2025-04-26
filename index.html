@@ -80,23 +80,9 @@
                     <span class="logo__text">&lambda;</span>
                 </a>
                 
-                <nav class="nav" aria-label="Main navigation">
-                    <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu" aria-label="Toggle menu">
-                        <span class="nav-toggle__bar"></span>
-                        <span class="nav-toggle__bar"></span>
-                    </button>
-                    
-                    <ul id="main-menu" class="nav__menu">
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#experience" class="nav__link">Experience</a></li>
-                        <li class="nav__item"><a href="#projects" class="nav__link">Projects</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </nav>
                 
                 <button class="theme-toggle" aria-label="Toggle dark mode">
-                    <svg class="theme-toggle__icon theme-toggle__icon--light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="theme-toggle__icon theme-toggle__icon--dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -107,7 +93,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                    <svg class="theme-toggle__icon theme-toggle__icon--dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="theme-toggle__icon theme-toggle__icon--light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </button>
@@ -117,7 +103,7 @@
     
     <main id="main-content">
         <!-- Hero Section -->
-        <section class="hero">
+        <section id="hero" class="section section--hero">
             <div class="container">
                 <div class="hero__content">
                     <span class="hero__eyebrow">Python Backend Developer | ML Engineer</span>
@@ -185,11 +171,14 @@
                 
                 <div class="about">
                     <div class="about__content">
-                        <p class="about__text">I'm a solutions-driven <strong>Python Backend Developer</strong> with over 3 years of experience building scalable web applications, APIs, and automation tools. My expertise mainly spans <strong>Django</strong>, <strong>FastAPI</strong>, and <strong>Machine Learning</strong> projects.</p>
-                        
-                        <p class="about__text">As a remote-ready developer, I excel in asynchronous communication, self-management, and delivering high-quality code on tight deadlines. I've led development teams and mentored junior developers while maintaining a focus on clean, maintainable code.</p>
-                        
-                        <p class="about__text">My background in Computer Science and Engineering provides a strong foundation Through competitive programming and diverse hands-on experience, I bring strong problem-solving skills to the table, both in algorithmic and real-world challenges. I'm passionate about continuous learning and staying current with emerging technologies.</p>
+                        <button class="about__cta-btn">More About Me</button>
+                        <div class="about__text">
+                            <p>A <strong>Software Engineer</strong> with years of experience building scalable APIs, automation tools, 
+                                and ML apps using 
+                                <strong>Python</strong>, and more other tech tools.
+                            </p>
+                            <p>With a strong foundation in Computer Science and Engineering, I value clean code, adaptability, and delivering high-impact solutions in remote, async teams.</p>
+                        </div>
                         
                         <div class="about__cta">
                             <a href="#contact" class="btn btn--primary">Contact Me</a>
@@ -231,9 +220,11 @@
         <!-- Experience Section -->
         <section id="experience" class="section section--experience">
             <div class="container">
-                <h2 class="section__title">Hands On Experience</h2>
-                
-                <div class="timeline">
+              <h2 class="section__title">Hands On Experience</h2>
+          
+              <div class="timeline-slider" data-cursor-label="← --- → ">
+                <!-- Slide 1 -->
+                <div class="timeline-slide timeline">
                     <div class="timeline__item">
                         <div class="timeline__meta">
                             <span class="timeline__year">2022–Pres</span>
@@ -249,7 +240,6 @@
                             </ul>
                         </div>
                     </div>
-                
                     <div class="timeline__item">
                         <div class="timeline__meta">
                             <span class="timeline__year">2021-2022</span>
@@ -264,7 +254,10 @@
                             </ul>
                         </div>
                     </div>
-                    
+                </div>
+          
+                <!-- Slide 2 -->
+                <div class="timeline-slide timeline">
                     <div class="timeline__item">
                         <div class="timeline__meta">
                             <span class="timeline__year">2021-2022</span>
@@ -295,8 +288,10 @@
                         </div>
                     </div>
                 </div>
-                
+              </div>
+              <p class="scroll-hint">← Scroll →</p>
             </div>
+
         </section>
         
         <!-- Projects Section -->
@@ -305,6 +300,39 @@
                 <h2 class="section__title">Featured Projects</h2>
                 
                 <div class="projects">
+                    <article class="project-card">
+                        
+                        <div class="project-card__content">
+                            <h3 class="project-card__title">Visit Tracker</h3>
+                            <p class="project-card__description">A Simple, lightweight website analytics for developers. An open-source project that simplifies tracking visits to your website.</p>
+                            <ul class="project-card__tags">
+                                <li>Django</li>
+                                <li>PostgreSQL</li>
+                                <li>REST API</li>
+                                <li>JavaScript</li>
+                                <li>...</li>
+                            </ul>
+                            <div class="project-card__links">
+                                <a href="https://visitapi-s28n.onrender.com/" target="_blank" class="project-card__link"><i class="fas fa-eye"></i> Demo</a>
+                                <a href="https://github.com/Natty4/fastvisit-api" class="project-card__link"><i class="fab fa-github"></i> Source</a>
+                            </div>
+                        </div>
+                        
+                        <script type="application/ld+json">
+                        {
+                          "@context": "https://schema.org",
+                          "@type": "SoftwareApplication",
+                          "name": "Visit Tracker",
+                          "applicationCategory": "BusinessApplication",
+                          "operatingSystem": "Web",
+                          "author": {
+                            "@type": "Person",
+                            "name": "Natnael"
+                          }
+                        }
+                        </script>
+                    </article>
+                    
                     <article class="project-card">
                         
                         <div class="project-card__content">
@@ -341,44 +369,13 @@
                     <article class="project-card">
                         
                         <div class="project-card__content">
-                            <h3 class="project-card__title">Inventory Management System</h3>
-                            <p class="project-card__description">An automated inventory tracking system with real-time stock updates, barcode scanning, and predictive ordering. Reduced manual inventory counts by 85% and improved accuracy.</p>
-                            <ul class="project-card__tags">
-                                <li>Django</li>
-                                <li>MongoDB</li>
-                                <li>PTB</li>
-                                <li>Data Visualization</li>
-                                <li>...</li>
-                            </ul>
-                            <div class="project-card__links">
-                                <a href="#" class="project-card__link"><i class="fas fa-eye"></i> Demo</a>
-                                <a href="https://github.com/Natty4/IMS-stockX-" class="project-card__link"><i class="fab fa-github"></i> Source</a>
-                            </div>
-                            <div class="project-card__links">
-                                
-                            </div>
-                        </div>
-                        
-                        <script type="application/ld+json">
-                        {
-                          "@context": "https://schema.org",
-                          "@type": "SoftwareApplication",
-                          "name": "Inventory Management System",
-                          "applicationCategory": "BusinessApplication",
-                          "operatingSystem": "Web",
-                          "author": {
-                            "@type": "Person",
-                            "name": "Natnael"
-                          }
-                        }
-                        </script>
-                    </article>
-                    
-                    <article class="project-card">
-                        
-                        <div class="project-card__content">
                             <h3 class="project-card__title">P2P Meter Taxi Web Application (FreePeerX)</h3>
-                            <p class="project-card__description">A machine learning-powered data quality monitoring system that automatically detects anomalies and improves data accuracy by 30%. Built with Python, Spark, and Matplotlib.</p>
+                            <p class="project-card__description">An Experimental P2P communication  
+                                Application that allows users to request a taxi from their location to 
+                                a destination. The application uses PeerJS and Leaflet.js to create 
+                                a <strong>peer-to-peer</strong> network and map the user's location to the destination.
+                                
+                            </p>
                             <ul class="project-card__tags">
                                 <li>javascript</li>
                                 <li>PeerJS</li>
@@ -490,6 +487,14 @@
                             <div class="specialty">
                                 <div class="specialty__icon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="specialty__title">Problem Solving</h4>
+                            </div>
+                            <div class="specialty">
+                                <div class="specialty__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
                                     </svg>
                                 </div>
@@ -516,9 +521,7 @@
                             </div>
                             <div class="specialty">
                                 <div class="specialty__icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
-                                    </svg>
+                                    <i class="fas fa-brain"></i>
                                 </div>
                                 <h4 class="specialty__title">ML Projects</h4>
                             </div>
@@ -547,7 +550,7 @@
         </section>
         
         <!-- GitHub Activity Section -->
-        <section class="section section--github">
+        <section id="github" class="section section--github">
             <div class="container">
                 <h2 class="section__title">GitHub Activity</h2>
                 
@@ -575,7 +578,7 @@
         </section>
         
         <!-- Certifications Section -->
-        <section class="section section--certifications">
+        <section id="certifications" class="section section--certifications">
             <div class="container">
                 <h2 class="section__title">Certifications & Competitions</h2>
                 
@@ -678,7 +681,7 @@
         </section>
         
         <!-- Remote Setup Section -->
-        <section class="section section--remote-setup">
+        <section id="remote-setup" class="section section--remote-setup">
             <div class="container">
                 <h2 class="section__title"><i class="fas fa-laptop-code"></i></h2>
                 
@@ -716,41 +719,61 @@
             </div>
         </section>
     </main>
+    <div id="custom-cursor">
+        <span id="cursor-label"></span>
+    </div>
+    <div id="footer-trigger"></div>
+    <!-- TL;DR Modal Footer -->
+    <footer class="footer-modal" id="footerModal">
+        <div class="footer-modal__content">
+        <button class="footer-modal__close" id="closeFooterModal">&times;</button>
+        <h2 class="footer-modal__title">TL;DR</h2>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-        
-            <div class="footer__main">
-                <a href="/" class="logo logo--footer">
-                <span class="logo__text">&lambda;</span>
-                </a>
-        
-                <p class="footer__tagline">Python Backend Developer & ML Engineer</p>
-        
-                <nav class="footer__nav">
-                <ul class="footer__menu">
-                    <li class="footer__item"><a href="#about" class="footer__link">About</a></li>
-                    <li class="footer__item"><a href="#experience" class="footer__link">Experience</a></li>
-                    <li class="footer__item"><a href="#projects" class="footer__link">Projects</a></li>
-                    <li class="footer__item"><a href="#skills" class="footer__link">Skills</a></li>
-                    <li class="footer__item"><a href="#contact" class="footer__link">Contact</a></li>
-                </ul>
-                </nav>
-        
-                <p class="footer__credits">
-                    Grateful for your time! Wishing you purpose and peace in your work <span aria-hidden="true">💙</span>
+        <div class="footer__main">
+            <a href="#" class="logo--footer">
+                <p class="logo__text">&lambda;  </p>
+                <p class="footer__tagline"> — Python Backend Developer & ML Engineer</p>
+            </a>
+    
+            <nav class="footer__nav">
+                <div class="footer__summary">
+                  <p>Here is the breakdown about me:</p>
+                  <table class="footer__table">
+                    <tbody>
+                      <tr><td>Name</td><td>Natnael K.</td></tr>
+                      <tr><td>Expertise</td><td>Scalable backends, REST APIs, ML</td></tr>
+                      <tr><td>Tech Stack</td><td>Python, Django, FastAPI, PostgreSQL, more...</td></tr>
+                      <tr><td>Domains</td><td>E-commerce, AI, automation, internal tools</td></tr>
+                      <tr><td>Approach</td><td>Clean code, test-driven development, fast delivery</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </nav>
+        </div>
+    
+        <div class="footer__credits">
+            
+                Natnael &copy; 2025
+            
+                <p>
+                    Grateful for your time! Wishing you purpose and peace in your work <span>💙</span>
                 </p>
-            </div>
-        
-            <div class="footer__copyright">
-                &copy; 2025 Natnael. All rights reserved.
-            </div>
-        
-            </div>
+        </div>
         </div>
     </footer>
+
+    <!-- Dot Slider Navigation -->
+    <div class="dot-slider">
+        <span class="dot" data-target="#hero"></span>
+        <span class="dot" data-target="#about"></span>
+        <span class="dot" data-target="#experience"></span>
+        <span class="dot" data-target="#projects"></span>
+        <span class="dot" data-target="#skills"></span>
+        <span class="dot" data-target="#github"></span>
+        <span class="dot" data-target="#certifications"></span>
+        <span class="dot" data-target="#contact"></span>
+        <span class="dot" data-target="#remote-setup"></span>
+    </div>
     
     <!-- Scripts -->
     <script src="js/main.js" defer></script>
