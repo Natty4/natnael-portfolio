@@ -222,7 +222,7 @@ html, body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: var(--color-background-alt);
+  background-color: var(--color-text-light);
   color: var(--color-light);
   font-family: var(--font-mono);
   padding: 4px 8px;
@@ -286,7 +286,7 @@ ol {
   position: absolute;
   top: -40px;
   left: 0;
-  background: var(--color-primary);
+
   color: white;
   padding: 8px;
   z-index: 100;
@@ -1729,6 +1729,7 @@ ol {
   border-radius: var(--border-radius);
   overflow: hidden;
   position: relative;
+  text-shadow: 0 0 5px var(--color-background-alt);
   box-shadow: var(--shadow-dark);
 }
 
