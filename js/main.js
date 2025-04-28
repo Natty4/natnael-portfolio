@@ -127,136 +127,212 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Code Animation
-const codeAnimation = document.getElementById("codeAnimation")
+const codeAnimation = document.getElementById("codeAnimation");
+const runButton = document.querySelector(".code-action--run");
+const codeOutput = document.getElementById("codeOutput");
+const consoleOutput = document.getElementById("consoleOutput");
+const closeConsoleBtn = document.getElementById("closeConsoleBtn");
+
+// Output lines without typing effect
+const OutPut = [
+ 
+  "Loading job description...",
+  "Training skill matcher model...",
+  "Matching developers to job requirements...",
+  "Best candidate found.",
+  "    ", 
+  "Top match: Natnael K. (match: 96.0%)",
+  "Recommendation: Invite for technical interview.",
+  "Resume saved to: /candidates/natnael_k.pdf"
+];
+
+let restartPending = false; // new flag
+let consoleOpen = false;
+let animationCompleted = false;
+
 function createCodeAnimation() {
-  if (!codeAnimation) return
-  
+  if (!codeAnimation) return;
+
   const codeLines = [
+    // Imports
+    "import json",
+    "import pandas as pd",
+    "from sklearn.model_selection import train_test_split",
+    "from utils import (",
+    "    preprocess,",
+    "    extract_skills,",
+    "    load_job_desc,",
+    "    load_dataset,",
+    "    train_skill_matcher",
+    ")",
+    "",
+    "   ",
+    // Function: analyze_developers
+    "",
     "def analyze_developers(dataset):",
-    '    """Process dev data and ',
-    '    match skills to job requirements."""',
+    '    """Process dev data and match skills to job requirements."""',
     "    results = {}",
-    "    ",
+    "",
     "    # Preprocess developer dataset",
     "    clean_data = preprocess(dataset)",
-    "    ",
+    "",
     "    # Extract skill features",
     "    features = extract_skills(clean_data)",
-    "    ",
+    "",
     "    # Load job position requirements",
-    "    job_requirements = load_job_desc(",
-    "        \"position.json\"",
-    "    )",
+    "    job_requirements = load_job_desc(\"position.json\")",
     "",
     "    # Train matching model", 
-    "    model = train_skill_matcher(",
-    "         features, job_requirements",  
-    "    )",
+    "    model = train_skill_matcher(features, job_requirements)",  
+    "",
     "    # Match developers to job",
     "    matches = model.predict(clean_data)",
-    "    ",
+    "",
     "    # Best candidate",
-    "    results[\"top_match\"] = matches[0] ",
+    "    results[\"top_match\"] = matches[0]",
     "    return results",
-    "    ",
+    "",
+    "   ",
+    "",
     "class SkillMatcherModel:",
     "    def __init__(self, config=None):",
     "        self.config = config or {}",
     "        self.model = None",
-    "    ",
+    "",
     "    def train(self, skills, reqrs):",
-    '        print("Training model...")',
-    "        self.model = self._build_model(",
-    "        skills, reqrs)",
+    '        print(\"Training model...\")',
+    "        self.model = self._build_model(skills, reqrs)",
     "        return self",
-    "    ",
+    "",
     "    def predict(self, data):",
     "        if self.model is None:",
-    '            raise ValueError("Not trained")',
+    '            raise ValueError(\"Not trained\")',
     "        return self.model.match(data)",
-    "    ",
+    "",
+    "   ",
+    "",
     "# Main execution",
-    'if __name__ == "__main__":',
-    '    dev_data = load_dataset("devs.csv")',
+    'if __name__ == \"__main__\":',
+    '    dev_data = load_dataset(\"devs.csv\")',
     "    results = analyze_developers(dev_data)",
-    '    print(f"Top match: ',
-    "    results[\"top_match\"])",
-    '   ',
-    '# Output: Top match: alex K. (match: 96.5%)',
+    '    print(f\"Top match: {results[\\\"top_match\\\"]}\")',
+    "",
+    "   ",
+    "# Output: Top match: Natnael K. (match: 96.0%)"
   ];
 
-  // Create code container
-  const codeContainer = document.createElement("div")
-  codeContainer.className = "code-container"
-  codeAnimation.appendChild(codeContainer)
+  const codeContainer = document.createElement("div");
+  codeContainer.className = "code-container";
+  codeAnimation.appendChild(codeContainer);
 
-  // Add code lines with typing effect
-  let lineIndex = 0
-  let charIndex = 0
+  // Disable the run button initially
+  runButton.disabled = true;
+  let lineIndex = 0;
+  let charIndex = 0;
 
   function typeLine() {
     if (lineIndex >= codeLines.length) {
-      // Start over when all lines are typed
+      animationCompleted = true;
+      runButton.disabled = false;
+
+      // Wait 5 seconds before restarting only if console is not open
       setTimeout(() => {
-        codeContainer.innerHTML = ""
-        lineIndex = 0
-        typeLine()
-      }, 3000)
-      return
+        if (!consoleOpen) {
+          restartAnimation();
+        } else {
+          restartPending = true;
+        }
+      }, 5000); // adjust delay as needed
+      return;
     }
 
-    const currentLine = codeLines[lineIndex]
+    const currentLine = codeLines[lineIndex];
 
     if (charIndex === 0) {
-      // Create new line element
-      const lineElement = document.createElement("div")
-      lineElement.className = "code-line"
-      codeContainer.appendChild(lineElement)
+      const lineElement = document.createElement("div");
+      lineElement.className = "code-line";
+      codeContainer.appendChild(lineElement);
     }
 
-    const currentLineElement = codeContainer.lastElementChild
+    const currentLineElement = codeContainer.lastElementChild;
 
     if (charIndex < currentLine.length) {
-      // Add character to current line
-      currentLineElement.textContent += currentLine.charAt(charIndex)
-      charIndex++
-      setTimeout(typeLine, 20)
+      currentLineElement.textContent += currentLine.charAt(charIndex);
+      charIndex++;
+      codeContainer.scrollTop = codeContainer.scrollHeight;
+      setTimeout(typeLine, 15);
     } else {
-      // Move to next line
-      lineIndex++
-      charIndex = 0
-      setTimeout(typeLine, 100)
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(typeLine, 80);
     }
   }
 
-  // Start typing animation
-  typeLine()
+  function restartAnimation() {
+    // Clear previous code and output
+    codeContainer.innerHTML = "";
+    codeOutput.textContent = "";
+    consoleOutput.style.display = "none"; // Hide console output on restart
 
-  // Add CSS for code animation
-  const style = document.createElement("style")
-  style.textContent = `
-    .code-container {
-      padding: 20px;
-      font-family: 'Courier New', monospace;
-      background-color: var(--color-background-alt);
-      height: 100%;
-      overflow: auto;
-    }
-    
-    .code-line {
-      line-height: 1.5;
-      white-space: pre;
-    }
-    
-    .light-theme .code-container {
-      color: var(--color-text);
-    }
-  `
-  document.head.appendChild(style)
+    lineIndex = 0;
+    charIndex = 0;
+    animationCompleted = false;
+    runButton.disabled = true;
+    typeLine();
+  }
+
+  typeLine();
 }
 
-// Initialize code animation
-createCodeAnimation()
+runButton.addEventListener("click", () => {
+  if (!animationCompleted) return;
+
+  consoleOpen = true;
+  codeOutput.textContent = "";  // Clear previous output
+  consoleOutput.style.display = "block";
+
+  let lineIndex = 0;
+
+  // Show output one line at a time
+  function showNextOutputLine() {
+    if (lineIndex < OutPut.length) {
+      // Append next line of output
+      codeOutput.textContent += OutPut[lineIndex] + '\n';
+      lineIndex++;
+
+      // If there are more lines to show, schedule the next one
+      if (lineIndex < OutPut.length) {
+        setTimeout(showNextOutputLine, 1000);  // Delay between each line
+      }
+    }
+  }
+
+  showNextOutputLine();
+});
+
+closeConsoleBtn.addEventListener("click", () => {
+  consoleOutput.style.display = "none";
+  consoleOpen = false;
+
+  // Restart the code animation when the console is closed
+  if (restartPending) {
+    // If the animation is pending restart, clear it and restart animation
+    setTimeout(() => {
+      codeOutput.textContent = "";
+      consoleOutput.style.display = "none";
+      restartAnimation();  // Restart the animation
+    }, 500);
+  }
+  // If the console is closed and the restart is not pending, restart the animation immediately
+  else {
+    restartAnimation();
+  }
+});
+
+createCodeAnimation();
+
+
+
 
 
 // Footer Modal
