@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Animation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    /* --- Terminal Container --- */
+    .hero__code-container {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #1e1e1e;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid #3a3c4e;
+      font-family: 'Fira Code', monospace;
+      margin: 40px auto;
+    }
+
+    /* --- Header Bar --- */
+    .code-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background-color: #2d2d2d;
+      border-bottom: 1px solid #3a3c4e;
+    }
+
+    .code-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ff5f56;
+    }
+
+    .code-dot:nth-child(2) {
+      background-color: #ffbd2e;
+    }
+
+    .code-dot:nth-child(3) {
+      background-color: #27c93f;
+    }
+
+    .code-title {
+      font-size: 0.875rem;
+      color: #f8f8f2;
+    }
+
+    .code-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .code-action {
+      padding: 0.25rem 0.75rem;
+      background-color: #5c6ac4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .code-action:hover {
+      background-color: #4b57aa;
+    }
+
+    /* --- Code Block Styling --- */
+    .code-animation {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      overflow: auto;
+      height: 400px;
+      padding: 1rem;
+      font-size: 0.85rem;
+    }
+
+    .code-container {
+      white-space: pre;
+    }
+
+    .code-line {
+      line-height: 1.9;
+      white-space: pre;
+    }
+
+    /* --- VS Code-Like Syntax Highlighting --- */
+    .token.comment  { color: #6a9955; }
+    .token.string   { color: #ce9178; }
+    .token.keyword  { color: #569cd6; }
+    .token.import   { color: #c586c0; }
+    .token.class    { color: #4ec9b0; }
+    .token.function { color: #dcdcaa; }
+    .token.number   { color: #b5cea8; }
+  </style>
+</head>
+<body>
+
+  <div class="hero__code-container">
+    <div class="code-header">
+      <div class="code-dots">
+        <span class="code-dot"></span>
+        <span class="code-dot"></span>
+        <span class="code-dot"></span>
+      </div>
+      <div class="code-title">hiring_model.py</div>
+      <div class="code-actions">
+        <button class="code-action">Run</button>
+      </div>
+    </div>
+    <div class="code-animation" id="codeAnimation"></div>
+  </div>
+
+  <script>
+    const codeAnimation = document.getElementById("codeAnimation");
+
+    function escapeHTML(str) {
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function highlightLine(line) {
+      const escaped = escapeHTML(line);
+
+      return escaped
+        .replace(/(#.*)/g, '<span class="token comment">$1</span>')
+        .replace(/\b(import|from|as)\b/g, '<span class="token import">$1</span>')
+        .replace(/\b(class)\b/g, '<span class="token class">$1</span>')
+        .replace(/\b(def)\b/g, '<span class="token function">$1</span>')
+        .replace(/\b(None|True|False|return|if|else|raise|in|or|and|not|is)\b/g, '<span class="token keyword">$1</span>')
+        .replace(/("[^"]*"|'[^']*')/g, '<span class="token string">$1</span>')
+        .replace(/\b\d+(\.\d+)?\b/g, '<span class="token number">$&</span>');
+    }
+
+    function createCodeAnimation() {
+      const codeLines = [
+        "import json",
+        "import pandas as pd",
+        "from sklearn.model_selection import train_test_split",
+        "",
+        "def analyze_developers(dataset):",
+        '    """Process dev data and match skills to job requirements."""',
+        "    results = {}",
+        "",
+        "    # Preprocess developer dataset",
+        "    clean_data = preprocess(dataset)",
+        "",
+        "    # Extract skill features",
+        "    features = extract_skills(clean_data)",
+        "",
+        "    # Load job position requirements",
+        "    job_requirements = load_job_desc(\"position.json\")",
+        "",
+        "    # Train matching model",
+        "    model = train_skill_matcher(features, job_requirements)",
+        "",
+        "    # Match developers to job",
+        "    matches = model.predict(clean_data)",
+        "",
+        "    # Best candidate",
+        "    results[\"top_match\"] = matches[0]",
+        "    return results",
+        "",
+        "class SkillMatcherModel:",
+        "    def __init__(self, config=None):",
+        "        self.config = config or {}",
+        "        self.model = None",
+        "",
+        "    def train(self, skills, reqrs):",
+        '        print(\"Training model...\")',
+        "        self.model = self._build_model(skills, reqrs)",
+        "        return self",
+        "",
+        "    def predict(self, data):",
+        "        if self.model is None:",
+        '            raise ValueError(\"Not trained\")',
+        "        return self.model.match(data)",
+        "",
+        "# Main execution",
+        'if __name__ == \"__main__\":',
+        '    dev_data = load_dataset(\"devs.csv\")',
+        "    results = analyze_developers(dev_data)",
+        '    print(f\"Top match: {results[\\\"top_match\\\"]}\")',
+        "# Output: Top match: alex K. (match: 96.5%)"
+      ];
+
+      const container = document.createElement("div");
+      container.className = "code-container";
+      codeAnimation.appendChild(container);
+
+      let lineIndex = 0;
+
+      function typeLine() {
+        if (lineIndex >= codeLines.length) {
+          setTimeout(() => {
+            container.innerHTML = "";
+            lineIndex = 0;
+            typeLine();
+          }, 4000);
+          return;
+        }
+
+        const rawLine = codeLines[lineIndex];
+        const lineEl = document.createElement("div");
+        lineEl.className = "code-line";
+        container.appendChild(lineEl);
+
+        let charIndex = 0;
+        let tempLine = "";
+
+        function typeChar() {
+          if (charIndex <= rawLine.length) {
+            tempLine = rawLine.slice(0, charIndex);
+            lineEl.innerHTML = highlightLine(tempLine);
+            charIndex++;
+            codeAnimation.scrollTop = codeAnimation.scrollHeight;
+            setTimeout(typeChar, 15);
+          } else {
+            lineIndex++;
+            setTimeout(typeLine, 80);
+          }
+        }
+
+        typeChar();
+      }
+
+      typeLine();
+    }
+
+    createCodeAnimation();
+  </script>
+</body>
+</html>
