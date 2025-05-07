@@ -1772,15 +1772,15 @@ ol {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: #ff5f56; /* red */
+  background-color: #212822; /* red */
 }
 
 .code-dot:nth-child(2) {
-  background-color: #ffbd2e; /* yellow */
+  background-color: #494232; /* yellow */
 }
 
 .code-dot:nth-child(3) {
-  background-color: #27c93f; /* green */
+  background-color: #3a2827; /* green */
 }
 
 /* Filename text in the center */
