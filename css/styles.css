@@ -701,6 +701,9 @@ ol {
   width: 50px;
   color: var(--color-text-light)
 }
+.count__icon {
+  padding-right: 3px;
+}
 
 .visit__count .count__icon svg {
   
