@@ -1,5 +1,38 @@
 // Main JavaScript 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.querySelector(".theme-toggle")
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)")
+
+  // Check for saved theme preference or use the system preference
+  const savedTheme = localStorage.getItem("theme")
+
+  if (savedTheme === "dark" || (!savedTheme && prefersDarkScheme.matches)) {
+    document.body.classList.add("dark-mode")
+  }
+
+  // Toggle theme when button is clicked
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode")
+
+    // Save preference to localStorage
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark")
+      themeToggle.setAttribute("aria-label", "Switch to light mode")
+    } else {
+      localStorage.setItem("theme", "light")
+      themeToggle.setAttribute("aria-label", "Switch to dark mode")
+    }
+  })
+
+  // Update aria-label based on current theme
+  if (document.body.classList.contains("dark-mode")) {
+    themeToggle.setAttribute("aria-label", "Switch to light mode")
+  } else {
+    themeToggle.setAttribute("aria-label", "Switch to dark mode")
+  }
+})
+
 
 const cursor = document.getElementById('custom-cursor');
 const label = document.getElementById('cursor-label');
@@ -332,8 +365,58 @@ closeConsoleBtn.addEventListener("click", () => {
 createCodeAnimation();
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const track = document.querySelector(".projects");
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
+
+  function getStep() {
+    const gap = parseInt(getComputedStyle(track).gap);
+    return track.querySelector(".project-card").offsetWidth + gap;
+  }
+
+  function updateButtons() {
+    const maxScroll =
+      track.scrollWidth - track.clientWidth - 1;
+
+    prevBtn.disabled = track.scrollLeft <= 0;
+    nextBtn.disabled = track.scrollLeft >= maxScroll;
+    
+  }
+
+  function scrollNext() {
+    track.scrollBy({ left: getStep(), behavior: "smooth" });
+  }
+
+  function scrollPrev() {
+    track.scrollBy({ left: -getStep(), behavior: "smooth" });
+  }
+
+  prevBtn.addEventListener("click", scrollPrev);
+  nextBtn.addEventListener("click", scrollNext);
+  track.addEventListener("scroll", updateButtons);
+
+  updateButtons();
+});
 
 
+
+function toggleDescription(btn) {
+    // Find the paragraph immediately before the button
+    const description = btn.previousElementSibling;
+    const isExpanded = description.classList.contains('expanded');
+    
+    if (isExpanded) {
+        description.classList.remove('expanded');
+        btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        
+        // Optional: Scroll the card back into view if it was long
+        btn.parentElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+        description.classList.add('expanded');
+        btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    }
+}
 
 // Footer Modal
 const footerModal = document.getElementById('footerModal');
