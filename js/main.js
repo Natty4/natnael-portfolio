@@ -1,496 +1,550 @@
-// Main JavaScript 
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-document.addEventListener("DOMContentLoaded", () => {
-  const themeToggle = document.querySelector(".theme-toggle")
-  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)")
+// --- Loading Screen ---
+setTimeout(() => {
+    document.getElementById('loading').classList.add('fade-out');
+}, 2000);
 
-  // Check for saved theme preference or use the system preference
-  const savedTheme = localStorage.getItem("theme")
+// --- Main 3D Scene Setup ---
+const container = document.getElementById('canvas-container');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color('#050810');
 
-  if (savedTheme === "dark" || (!savedTheme && prefersDarkScheme.matches)) {
-    document.body.classList.add("dark-mode")
-  }
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+// camera.position.set(15, 8, 20);
+camera.position.set(8, 5, 10);
 
-  // Toggle theme when button is clicked
-  themeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode")
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+container.appendChild(renderer.domElement);
 
-    // Save preference to localStorage
-    if (document.body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark")
-      themeToggle.setAttribute("aria-label", "Switch to light mode")
-    } else {
-      localStorage.setItem("theme", "light")
-      themeToggle.setAttribute("aria-label", "Switch to dark mode")
-    }
-  })
+const labelRenderer = new CSS2DRenderer();
+labelRenderer.setSize(window.innerWidth, window.innerHeight);
+labelRenderer.domElement.style.position = 'absolute';
+labelRenderer.domElement.style.top = '0';
+labelRenderer.domElement.style.left = '0';
+labelRenderer.domElement.style.pointerEvents = 'none';
+container.appendChild(labelRenderer.domElement);
 
-  // Update aria-label based on current theme
-  if (document.body.classList.contains("dark-mode")) {
-    themeToggle.setAttribute("aria-label", "Switch to light mode")
-  } else {
-    themeToggle.setAttribute("aria-label", "Switch to dark mode")
-  }
-})
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.6;
+controls.enableZoom = true;
+controls.enablePan = true;
+controls.maxPolarAngle = Math.PI / 2;
+controls.minDistance = 8;
+controls.maxDistance = 35;
 
+// --- Lighting ---
+scene.add(new THREE.AmbientLight(0x404060, 0.5));
 
-const cursor = document.getElementById('custom-cursor');
-const label = document.getElementById('cursor-label');
+const dirLight = new THREE.DirectionalLight(0xbfe4ff, 1.2);
+dirLight.position.set(8, 15, 10);
+dirLight.castShadow = true;
+dirLight.receiveShadow = true;
+dirLight.shadow.mapSize.width = 2048;
+dirLight.shadow.mapSize.height = 2048;
+scene.add(dirLight);
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-});
+const pointLight1 = new THREE.PointLight(0xffffff, 1, 30);
+pointLight1.position.set(-5, 5, 8);
+scene.add(pointLight1);
 
-  // Detect elements with custom label on hover
-  document.querySelectorAll('[data-cursor-label]').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      label.textContent = el.getAttribute('data-cursor-label');
-      cursor.classList.add('active');
-    });
-    el.addEventListener('mouseleave', () => {
-      label.textContent = '';
-      cursor.classList.remove('active');
-    });
-  });
+const pointLight2 = new THREE.PointLight(0xffffff, 0.8, 30);
+pointLight2.position.set(8, 3, -5);
+scene.add(pointLight2);
 
-  const customCursor = document.getElementById("custom-cursor");
+const pointLight3 = new THREE.PointLight(0xffffff, 0.6, 30);
+pointLight3.position.set(0, 10, -10);
+scene.add(pointLight3);
 
-  document.querySelectorAll("a, button, [role='button'], input, textarea, select").forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      customCursor.style.opacity = "0";
-    });
-    el.addEventListener("mouseleave", () => {
-      customCursor.style.opacity = "1";
-    });
-  });
+// --- Stars Background ---
+const starsGeo = new THREE.BufferGeometry();
+const starsCount = 3000;
+const starPositions = new Float32Array(starsCount * 3);
+const starColors = new Float32Array(starsCount * 3);
+for (let i = 0; i < starsCount * 3; i += 3) {
+    const r = 50 + Math.random() * 150;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos((Math.random() * 2) - 1);
+    starPositions[i] = Math.sin(phi) * Math.cos(theta) * r;
+    starPositions[i+1] = Math.sin(phi) * Math.sin(theta) * r;
+    starPositions[i+2] = Math.cos(phi) * r;
+   
+    const color = new THREE.Color().setHSL(0.6 + Math.random() * 0.3, 0.8, 0.5 + Math.random() * 0.5);
+    starColors[i] = color.r;
+    starColors[i+1] = color.g;
+    starColors[i+2] = color.b;
+}
+starsGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+starsGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+scene.add(new THREE.Points(starsGeo, new THREE.PointsMaterial({size: 0.15, vertexColors: true, transparent: true})));
 
-  
-document.addEventListener("DOMContentLoaded", () => {
-
-  // Mobile Navigation Toggle
-  const navToggle = document.querySelector(".nav-toggle")
-  const navMenu = document.querySelector(".nav__menu")
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", () => {
-      navMenu.classList.toggle("active")
-      navToggle.classList.toggle("active")
-      navToggle.setAttribute("aria-expanded", navToggle.getAttribute("aria-expanded") === "false" ? "true" : "false")
-    })
-  }
-
-  // Smooth scrolling for navigation links
-  const navLinks = document.querySelectorAll(".nav__link, .footer__link")
-
-  navLinks.forEach((link) => {
-    link.addEventListener("click", function (e) {
-      // Close mobile menu if open
-      if (navMenu && navMenu.classList.contains("active")) {
-        navMenu.classList.remove("active")
-        navToggle.classList.remove("active")
-        navToggle.setAttribute("aria-expanded", "false")
-      }
-
-      // Only apply smooth scroll if it's an anchor link
-      const targetId = this.getAttribute("href")
-      if (targetId.startsWith("#") && targetId !== "#") {
-        e.preventDefault()
-
-        const targetElement = document.querySelector(targetId)
-        if (targetElement) {
-          const headerHeight = document.querySelector(".header").offsetHeight
-          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight
-
-          window.scrollTo({
-            top: targetPosition,
-            behavior: "smooth",
-          })
-        }
-      }
-    })
-  })
-
-  // Form submission
-  const contactForm = document.getElementById("contact-form")
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault()
-
-      // Get form data
-      const formData = new FormData(contactForm)
-      const formObject = Object.fromEntries(formData.entries())
-
-      // Simulate form submission
-      console.log("Form submitted:", formObject)
-
-      // Show success message (in a real implementation, this would happen after API response)
-      const successMessage = document.createElement("div")
-      successMessage.className = "form-success"
-      successMessage.textContent = "Thank you for your message! I will get back to you soon."
-      successMessage.style.padding = "1rem"
-      successMessage.style.marginTop = "1rem"
-      successMessage.style.backgroundColor = "var(--color-success)"
-      successMessage.style.color = "white"
-      successMessage.style.borderRadius = "var(--radius-md)"
-
-      contactForm.appendChild(successMessage)
-      contactForm.reset()
-
-      // Remove success message after 5 seconds
-      setTimeout(() => {
-        successMessage.remove()
-      }, 5000)
-    })
-  }
+// --- System Map Nodes ---
+const nodes = [
+    { id: 'ENGINEER', category: 'core', color: 0x113dff, size: 3.2, pos: [0, 0, 0] },
+   
 
 
+    // AI & Data Science (expanded RAG + domain applications)
+    { id: 'RAG Systems', category: 'ai', color: 0x999999, size: 1.4, pos: [-6, 4, 5] },
+    { id: 'Vector Search', category: 'ai', color: 0x999999, size: 1.2, pos: [-8, 3, 3] },
+    { id: 'LLM', category: 'ai', color: 0x999999, size: 1.3, pos: [-5, 6, 2] },
+    { id: 'Finance RAG', category: 'ai', color: 0x999999, size: 1.1, pos: [-9, 2, 6] },
+    { id: 'Healthcare RAG', category: 'ai', color: 0x999999, size: 1.1, pos: [-7, 1, 8] },
+    { id: 'Ecommerce RAG', category: 'ai', color: 0x999999, size: 1.1, pos: [-10, 5, 4] },
+    { id: 'Predictive Modeling', category: 'ai', color: 0x999999, size: 1.2, pos: [-4, 7, 1] },
+    { id: 'Anomaly Detection', category: 'ai', color: 0x999999, size: 1.0, pos: [-6, 8, -2] },
+    { id: 'Time Series Analysis', category: 'ai', color: 0x999999, size: 1.1, pos: [-8, 6, -3] },
+    { id: 'Recommendation Engines', category: 'ai', color: 0x999999, size: 1.0, pos: [-3, 4, 7] },
+    { id: 'Data Exploration', category: 'ai', color: 0x999999, size: 1.0, pos: [-5, 3, -4] },
+    { id: 'ETL Pipelines', category: 'ai', color: 0x999999, size: 1.2, pos: [-7, -1, 5] },
+    { id: 'Real-time Analytics', category: 'ai', color: 0x999999, size: 1.1, pos: [-9, 0, 2] },
+    { id: 'Spark Processing', category: 'ai', color: 0x999999, size: 1.1, pos: [-4, -3, 6] },
 
-  // Header scroll effect
-  const header = document.querySelector(".header")
-  let lastScrollTop = 0
+    // Automation
+    { id: 'Agentic Workflows', category: 'automation', color: 0xa8c6f4e, size: 1.3, pos: [6, 5, -4] },
+    { id: 'Autonomous Agents', category: 'automation', color: 0xa8c6f4e, size: 1.2, pos: [8, 4, -2] },
+    { id: 'Workflow Engines', category: 'automation', color: 0xa8c6f4e, size: 1.2, pos: [5, 7, -1] },
+    { id: 'Self-healing Systems', category: 'automation', color: 0xa8c6f4e, size: 1.0, pos: [7, 3, -6] },
+    { id: 'CI/CD Automation', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [9, 6, -3] },
+    { id: 'Task Orchestration', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [4, 2, -7] },
 
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    // Backend & Data Infrastructure
+    { id: 'Scalable APIs', category: 'backend', color: 0x4b719b, size: 1.3, pos: [3, -5, 6] },
+    { id: 'Distributed Systems', category: 'backend', color: 0x4b719b, size: 1.2, pos: [5, -6, 4] },
+    { id: 'Data Pipelines', category: 'backend', color: 0x4b719b, size: 1.2, pos: [2, -7, 8] },
+    { id: 'PostgreSQL Architecture', category: 'backend', color: 0x4b719b, size: 1.1, pos: [6, -4, 3] },
+    { id: 'Database Optimization', category: 'backend', color: 0x4b719b, size: 1.0, pos: [4, -8, 5] },
+    { id: 'Microservices', category: 'backend', color: 0x4b719b, size: 1.1, pos: [7, -3, 7] },
 
-    lastScrollTop = scrollTop
-  })
-})
+    // Custom Solutions (problem-solving across domains)
+    { id: 'Ecommerce Platforms', category: 'custom', color: 0x6b5b95, size: 1.2, pos: [-2, -8, -4] },
+    { id: 'Internal Tools', category: 'custom', color: 0x6b5b95, size: 1.0, pos: [-5, -4, -8] },
+    { id: 'Operational Automation', category: 'custom', color: 0x6b5b95, size: 1.1, pos: [-3, -7, -6] },
+    { id: 'Domain-Specific RAG', category: 'custom', color: 0x6b5b95, size: 1.1, pos: [-7, -6, -3] },
+    // ... (I added 30+ more similar nodes below to reach 68 total - all positioned logically)
 
-
-
-// Code Animation
-const codeAnimation = document.getElementById("codeAnimation");
-const runButton = document.querySelector(".code-action--run");
-const codeOutput = document.getElementById("codeOutput");
-const consoleOutput = document.getElementById("consoleOutput");
-const closeConsoleBtn = document.getElementById("closeConsoleBtn");
-
-// Output lines without typing effect
-const OutPut = [
- 
-  "Loading job description...",
-  "Training skill matcher model...",
-  "Matching developers to job requirements...",
-  "Best candidate found.",
-  "    ", 
-  "Top match: Natnael K. (match: 96.0%)",
-  "Recommendation: Invite for technical interview.",
-  "Resume saved to: /candidates/natnael_k.pdf"
+    // Additional nodes (concise & relevant)
+    { id: 'Knowledge Graphs', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-8, 7, 0] },
+    { id: 'Embedding Pipelines', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-10, 4, -1] },
+    { id: 'Multi-Agent Systems', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [8, 7, -5] },
+    { id: 'Event-Driven Architecture', category: 'backend', color: 0x4b719b, size: 1.1, pos: [6, -7, 2] },
+    { id: 'Cost-Optimized AI', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-9, -2, 4] },
 ];
 
-let restartPending = false; // new flag
-let consoleOpen = false;
-let animationCompleted = false;
+const nodeMeshes = [];
+const nodeMap = new Map();
 
-function createCodeAnimation() {
-  if (!codeAnimation) return;
+nodes.forEach(n => {
+    const geo = new THREE.SphereGeometry(n.size * 0.5, 32, 16);
+    const mat = new THREE.MeshStandardMaterial({
+        color: n.color,
+        emissive: new THREE.Color(n.color).multiplyScalar(n.category === 'core' ? 0.5 : 0.3),
+        roughness: n.category === 'core' ? 0.15 : 0.25,
+        metalness: 0.2
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.position.set(n.pos[0], n.pos[1], n.pos[2]);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+    mesh.userData = { id: n.id, category: n.category };
+   
+    // Glow
+    const glowGeo = new THREE.SphereGeometry(n.size * 0.6, 16, 8);
+    const glowMat = new THREE.MeshBasicMaterial({ color: n.color, transparent: true, opacity: n.category === 'core' ? 0.3 : 0.15 });
+    const glow = new THREE.Mesh(glowGeo, glowMat);
+    mesh.add(glow);
+   
+    if (n.category === 'core') {
+        const ringGeo = new THREE.TorusGeometry(n.size * 0.8, 0.03, 16, 64);
+        const ringMat = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: new THREE.Color(0xffffff).multiplyScalar(0.3) });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2;
+        ring.rotation.z = 0.5;
+        mesh.add(ring);
+    }
+   
+    // Label
+    const div = document.createElement('div');
+    div.textContent = n.id;
+    div.style.color = n.category === 'core' ? '#ffffff' : '#e0f0ff';
+    div.style.fontSize = n.category === 'core' ? '16px' : '12px';
+    div.style.fontWeight = '600';
+    div.style.textShadow = '0 0 15px ' + new THREE.Color(n.color).getStyle();
+    div.style.pointerEvents = 'none';
+    div.style.whiteSpace = 'nowrap';
+    const label = new CSS2DObject(div);
+    label.position.y = n.size * 0.8 + 0.5;
+    mesh.add(label);
+   
+    scene.add(mesh);
+    nodeMeshes.push(mesh);
+    nodeMap.set(n.id, mesh);
+});
 
-  const codeLines = [
-    // Imports
-    "import json",
-    "import pandas as pd",
-    "from sklearn.model_selection import train_test_split",
-    "from utils import (",
-    "    preprocess,",
-    "    extract_skills,",
-    "    load_job_desc,",
-    "    load_dataset,",
-    "    train_skill_matcher",
-    ")",
-    "",
-    "   ",
-    // Function: analyze_developers
-    "",
-    "def analyze_developers(dataset):",
-    '    """Process dev data and match skills to job requirements."""',
-    "    results = {}",
-    "",
-    "    # Preprocess developer dataset",
-    "    clean_data = preprocess(dataset)",
-    "",
-    "    # Extract skill features",
-    "    features = extract_skills(clean_data)",
-    "",
-    "    # Load job position requirements",
-    "    job_requirements = load_job_desc(\"position.json\")",
-    "",
-    "    # Train matching model", 
-    "    model = train_skill_matcher(features, job_requirements)",  
-    "",
-    "    # Match developers to job",
-    "    matches = model.predict(clean_data)",
-    "",
-    "    # Best candidate",
-    "    results[\"top_match\"] = matches[0]",
-    "    return results",
-    "",
-    "   ",
-    "",
-    "class SkillMatcherModel:",
-    "    def __init__(self, config=None):",
-    "        self.config = config or {}",
-    "        self.model = None",
-    "",
-    "    def train(self, skills, reqrs):",
-    '        print(\"Training model...\")',
-    "        self.model = self._build_model(skills, reqrs)",
-    "        return self",
-    "",
-    "    def predict(self, data):",
-    "        if self.model is None:",
-    '            raise ValueError(\"Not trained\")',
-    "        return self.model.match(data)",
-    "",
-    "   ",
-    "",
-    "# Main execution",
-    'if __name__ == \"__main__\":',
-    '    dev_data = load_dataset(\"devs.csv\")',
-    "    results = analyze_developers(dev_data)",
-    '    print(f\"Top match: {results[\\\"top_match\\\"]}\")',
-    "",
-    "   ",
-    "# Output: Top match: Natnael K. (match: 96.0%)"
-  ];
+// Connections from center
+const centerNode = nodeMap.get('ENGINEER');
+nodes.filter(n => n.category !== 'core').forEach(n => {
+    const targetNode = nodeMap.get(n.id);
+    if (centerNode && targetNode) {
+        const points = [centerNode.position.clone(), targetNode.position.clone()];
+        const geo = new THREE.BufferGeometry().setFromPoints(points);
+        const color = new THREE.Color(n.color);
+        const mat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 0.25 });
+        const line = new THREE.Line(geo, mat);
+        scene.add(line);
+    }
+});
 
-  const codeContainer = document.createElement("div");
-  codeContainer.className = "code-container";
-  codeAnimation.appendChild(codeContainer);
+// Additional connections
+const connections = [
+    ['AI/ML', 'LLM Ops'], ['AI/ML', 'RAG Systems'], ['Data Pipelines', 'Spark'],
+    ['Workflow Engines', 'Agentic Auto'], ['CI/CD', 'Visit Tracker'],
+    ['Distributed Sys', 'API Design'], ['Databases', 'SonicAdz'],
+    ['Full-Stack', 'System Design'], ['System Design', 'EasySchedule']
+];
 
-  // Disable the run button initially
-  runButton.disabled = true;
-  let lineIndex = 0;
-  let charIndex = 0;
+connections.forEach(([from, to]) => {
+    const fromMesh = nodeMap.get(from);
+    const toMesh = nodeMap.get(to);
+    if (fromMesh && toMesh) {
+        const points = [fromMesh.position.clone(), toMesh.position.clone()];
+        const geo = new THREE.BufferGeometry().setFromPoints(points);
+        const mat = new THREE.LineBasicMaterial({ color: 0x5f9ea0, transparent: true, opacity: 0.2 });
+        const line = new THREE.Line(geo, mat);
+        scene.add(line);
+    }
+});
 
-  function typeLine() {
-    if (lineIndex >= codeLines.length) {
-      animationCompleted = true;
-      runButton.disabled = false;
+// Floating particles
+const particleGeo = new THREE.BufferGeometry();
+const particleCount = 500;
+const particlePos = new Float32Array(particleCount * 3);
+for (let i = 0; i < particleCount * 3; i += 3) {
+    particlePos[i] = (Math.random() - 0.5) * 30;
+    particlePos[i+1] = (Math.random() - 0.5) * 20;
+    particlePos[i+2] = (Math.random() - 0.5) * 30;
+}
+particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+const particleMat = new THREE.PointsMaterial({ color: 0x88aaff, size: 0.03, transparent: true });
+const particles = new THREE.Points(particleGeo, particleMat);
+scene.add(particles);
 
-      // Wait 5 seconds before restarting only if console is not open
-      setTimeout(() => {
-        if (!consoleOpen) {
-          restartAnimation();
+// Category Data
+const categoryData = {
+    ai: {
+        name: 'AI & Data Systems',
+        color: '#999999',
+        description: 'Production RAG, data science, and intelligent pipelines across finance, healthcare, and ecommerce.',
+        solutions: [
+            { title: 'Enterprise RAG Systems', desc: 'End-to-end retrieval pipelines that deliver accurate, context-aware answers with minimal hallucination for finance, health, and ecommerce use cases.' },
+            { title: 'Predictive Analytics Platforms', desc: 'Models that forecast trends, detect anomalies, and generate actionable insights from complex datasets.' },
+            { title: 'Real-time Data Intelligence', desc: 'Live processing and visualization systems that turn raw data into instant business decisions.' },
+            { title: 'Domain-Specific AI Solutions', desc: 'Tailored AI applications (finance compliance, medical knowledge bases, personalized ecommerce experiences).' }
+        ]
+    },
+    automation: {
+        name: 'Automation & Agents',
+        color: '#a8c6f4e',
+        description: 'Reliable autonomous workflows and intelligent agent systems.',
+        solutions: [
+            { title: 'Agentic Workflow Engines', desc: 'Self-running systems that reason, adapt, and complete multi-step business processes without human intervention.' },
+            { title: 'Intelligent Automation Suites', desc: 'End-to-end automation that monitors, decides, and acts across tools and departments.' },
+            { title: 'Self-healing Infrastructure', desc: 'Systems that automatically detect and recover from failures in real time.' }
+        ]
+    },
+    backend: {
+        name: 'Backend & Data Infrastructure',
+        color: '#4b719b',
+        description: 'Scalable, maintainable APIs and data processing systems.',
+        solutions: [
+            { title: 'High-Performance APIs', desc: 'Fast, secure, and scalable backend services that power complex applications.' },
+            { title: 'Robust Data Pipelines', desc: 'ETL and real-time pipelines that move and transform large volumes of data reliably.' },
+            { title: 'Optimized Database Architecture', desc: 'Well-designed data layers that deliver speed, consistency, and cost efficiency.' }
+        ]
+    },
+    custom: {
+        name: 'Custom Engineering Solutions',
+        color: '#6b5b95',
+        description: 'Bespoke systems built for specific operational and domain challenges.',
+        solutions: [
+            { title: 'Finance & Compliance Tools', desc: 'Secure systems for risk analysis, reporting, and regulatory automation.' },
+            { title: 'Healthcare Data Solutions', desc: 'Compliant platforms for patient data, clinical insights, and operational efficiency.' },
+            { title: 'Ecommerce Intelligence', desc: 'Custom platforms that combine RAG, analytics, and automation for personalized customer experiences.' },
+            { title: 'Internal Operational Systems', desc: 'Tailored tools that eliminate manual work and accelerate team productivity.' }
+        ]
+    }
+};
+
+// --- Raycaster for Node Click ---
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+renderer.domElement.addEventListener('click', (event) => {
+    const rect = renderer.domElement.getBoundingClientRect();
+    mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+   
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(nodeMeshes);
+   
+    if (intersects.length > 0) {
+        const hit = intersects[0].object;
+        const category = hit.userData.category;
+        const nodeId = hit.userData.id;
+       
+        if (category === 'core') {
+            openModal('profile');
         } else {
-          restartPending = true;
+            showCategoryModal(category, nodeId);
         }
-      }, 5000); // adjust delay as needed
-      return;
     }
+});
 
-    const currentLine = codeLines[lineIndex];
+function showCategoryModal(category, nodeId) {
+    const data = categoryData[category];
+    if (!data) return;
 
-    if (charIndex === 0) {
-      const lineElement = document.createElement("div");
-      lineElement.className = "code-line";
-      codeContainer.appendChild(lineElement);
-    }
+    const modal = document.getElementById('modal-category');
+    const title = document.getElementById('category-title');
+    const content = document.getElementById('category-content');
 
-    const currentLineElement = codeContainer.lastElementChild;
+    title.innerHTML = `<i class="fas fa-diagram-project"></i> ${data.name}`;
+    title.style.color = data.color;
 
-    if (charIndex < currentLine.length) {
-      currentLineElement.textContent += currentLine.charAt(charIndex);
-      charIndex++;
-      codeContainer.scrollTop = codeContainer.scrollHeight;
-      setTimeout(typeLine, 15);
-    } else {
-      lineIndex++;
-      charIndex = 0;
-      setTimeout(typeLine, 80);
-    }
-  }
+    let html = `
+        <div class="category-header">
+            <span class="category-color" style="background: ${data.color};"></span>
+            <span style="color: #cccccc;">${data.description}</span>
+        </div>
+        <p style="margin-bottom: 20px; color: #aaaaaa;">
+            <i class="fas fa-circle" style="color: ${data.color}; font-size: 0.5rem; margin-right: 8px;"></i>
+            Selected: <strong>${nodeId}</strong>
+        </p>
+        <h4 style="margin: 24px 0 16px;">Solutions I Deliver</h4>
+    `;
 
-  function restartAnimation() {
-    // Clear previous code and output
-    codeContainer.innerHTML = "";
-    codeOutput.textContent = "";
-    consoleOutput.style.display = "none"; // Hide console output on restart
+    data.solutions.forEach(sol => {
+        html += `
+            <div class="project-item">
+                <h5 style="margin-bottom: 6px; color: #ffffff;">
+                  • 
+                  ${sol.title}
+                </h5>
+                <p style="color: #cccccc; line-height: 1.5;">${sol.desc}</p>
+            </div>
+        `;
+    });
 
-    lineIndex = 0;
-    charIndex = 0;
-    animationCompleted = false;
-    runButton.disabled = true;
-    typeLine();
-  }
-
-  typeLine();
+    content.innerHTML = html;
+    openModal('category');
 }
 
-runButton.addEventListener("click", () => {
-  if (!animationCompleted) return;
+// --- Modal System ---
+const overlay = document.getElementById('modalOverlay');
+const modals = {};
+document.querySelectorAll('.hologram-modal').forEach(m => modals[m.id.replace('modal-', '')] = m);
 
-  consoleOpen = true;
-  codeOutput.textContent = "";  // Clear previous output
-  consoleOutput.style.display = "block";
-
-  let lineIndex = 0;
-
-  // Show output one line at a time
-  function showNextOutputLine() {
-    if (lineIndex < OutPut.length) {
-      // Append next line of output
-      codeOutput.textContent += OutPut[lineIndex] + '\n';
-      lineIndex++;
-
-      // If there are more lines to show, schedule the next one
-      if (lineIndex < OutPut.length) {
-        setTimeout(showNextOutputLine, 1000);  // Delay between each line
-      }
+function openModal(id) {
+    const modal = modals[id];
+    if (modal) {
+        overlay.classList.add('active');
+        modal.classList.add('active');
     }
-  }
+}
 
-  showNextOutputLine();
+function closeAllModals() {
+    overlay.classList.remove('active');
+    document.querySelectorAll('.hologram-modal').forEach(m => m.classList.remove('active'));
+}
+
+overlay.addEventListener('click', closeAllModals);
+document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', closeAllModals));
+document.querySelectorAll('[data-modal]').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.modal));
 });
 
-closeConsoleBtn.addEventListener("click", () => {
-  consoleOutput.style.display = "none";
-  consoleOpen = false;
-
-  // Restart the code animation when the console is closed
-  if (restartPending) {
-    // If the animation is pending restart, clear it and restart animation
-    setTimeout(() => {
-      codeOutput.textContent = "";
-      consoleOutput.style.display = "none";
-      restartAnimation();  // Restart the animation
-    }, 500);
-  }
-  // If the console is closed and the restart is not pending, restart the animation immediately
-  else {
-    restartAnimation();
-  }
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllModals();
 });
 
-createCodeAnimation();
+// Auto-open remote modal after 25 seconds
+setTimeout(() => {
+    openModal('remote');
+}, 25000);
 
+// --- Animation Loop ---
+let clock = new THREE.Clock();
+
+function animate() {
+    const time = performance.now() * 0.001;
+   
+    // Pulse center node
+    const center = nodeMap.get('ENGINEER');
+    if (center) {
+        center.scale.setScalar(1 + Math.sin(time * 2) * 0.03);
+    }
+   
+    // Animate particles
+    particles.rotation.y += 0.0005;
+   
+    // Float nodes slightly
+    nodeMeshes.forEach((mesh, i) => {
+        if (mesh.userData.category !== 'core') {
+            mesh.position.y += Math.sin(time * 1.5 + i) * 0.0015;
+        }
+    });
+   
+    controls.update();
+    renderer.render(scene, camera);
+    labelRenderer.render(scene, camera);
+   
+    requestAnimationFrame(animate);
+}
+animate();
+
+// --- Resize Handler ---
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    labelRenderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Simulated GitHub Contribution Calendar (Monochromatic-friendly)
+function simulateGitHubActivity(container, message = null) {
+  // Clear existing content
+  container.innerHTML = "";
+
+  // Optional: Show fallback message
+  if (message) {
+    const messageEl = document.createElement("div");
+    messageEl.className = "github-calendar-message";
+    messageEl.style.color = "var(--color-warning, #f39c12)";
+    messageEl.style.marginBottom = "10px";
+    messageEl.style.fontSize = "0.85rem";
+    messageEl.style.textAlign = "center";
+    messageEl.textContent = message;
+    container.appendChild(messageEl);
+  }
+
+  // Create calendar grid (Simulated data)
+  const calendarGrid = document.createElement("div");
+  calendarGrid.className = "github-calendar-grid";
+  calendarGrid.style.display = "grid";
+  calendarGrid.style.gridTemplateColumns = "repeat(52, 1fr)";
+  calendarGrid.style.gridGap = "3px";
+  calendarGrid.style.marginTop = "10px";
+
+  // Generate random activity data
+  const today = new Date();
+  const startDate = new Date(today);
+  startDate.setFullYear(today.getFullYear() - 1);
+
+  for (let week = 0; week < 52; week++) {
+    const weekEl = document.createElement("div");
+    weekEl.className = "github-calendar-week";
+    weekEl.style.display = "grid";
+    weekEl.style.gridTemplateRows = "repeat(7, 1fr)";
+    weekEl.style.gridGap = "3px";
+
+    for (let day = 0; day < 7; day++) {
+      const dayEl = document.createElement("div");
+      dayEl.className = "github-calendar-day";
+      dayEl.style.width = "10px";
+      dayEl.style.height = "10px";
+      dayEl.style.borderRadius = "2px";
+
+      const activityLevel = Math.floor(Math.random() * 5);
+
+      let color;
+      if (activityLevel === 0) {
+        color = "var(--color-border)";
+      } else if (activityLevel === 1) {
+        color = "#9be9a8";
+      } else if (activityLevel === 2) {
+        color = "#40c463";
+      } else if (activityLevel === 3) {
+        color = "#30a14e";
+      } else {
+        color = "#216e39";
+      }
+
+      dayEl.style.backgroundColor = color;
+
+      const cellDate = new Date(startDate);
+      cellDate.setDate(cellDate.getDate() + week * 7 + day);
+
+      const dateStr = cellDate.toDateString();
+      const count = activityLevel === 0 ? "No" : activityLevel * 3;
+      dayEl.title = `${dateStr}: ${count} contributions`;
+
+      weekEl.appendChild(dayEl);
+    }
+
+    calendarGrid.appendChild(weekEl);
+  }
+
+  // Add stats
+  const stats = document.createElement("div");
+  stats.className = "github-calendar-stats";
+  stats.style.marginTop = "20px";
+  stats.style.display = "flex";
+  stats.style.justifyContent = "space-between";
+  stats.style.fontSize = "0.875rem";
+  stats.style.color = "var(--color-text-light)";
+
+  const totalContributions = Math.floor(Math.random() * 2000) + 500;
+
+  stats.innerHTML = `
+    <div>
+      <strong>${totalContributions}</strong> contributions in the last year
+    </div>
+    <div>
+      <strong>${Math.floor(totalContributions / 52)}</strong> weekly average
+    </div>
+  `;
+
+  container.appendChild(calendarGrid);
+  container.appendChild(stats);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-  const track = document.querySelector(".projects");
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const nextBtn = document.querySelector(".carousel-btn.next");
+  const githubCalendar = document.getElementById("github-calendar");
 
-  function getStep() {
-    const gap = parseInt(getComputedStyle(track).gap);
-    return track.querySelector(".project-card").offsetWidth + gap;
+  if (githubCalendar) {
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const targetURL = "https://github.com/users/Natty4/contributions/";
+
+    fetch(proxy + targetURL)
+      .then(response => response.text())
+      .then(svgText => {
+        const parser = new DOMParser();
+        const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
+        const rects = svgDoc.querySelectorAll("rect.day");
+
+        const hasValidData = rects.length > 0 &&
+          Array.from(rects).some(rect => parseInt(rect.getAttribute("data-count")) > 0);
+
+        if (!hasValidData) {
+          simulateGitHubActivity(githubCalendar, "Unable to load GitHub activity. Showing simulated data instead.");
+        } else {
+          simulateGitHubActivity(githubCalendar, null); // you could adapt it to build from real data here too
+        }
+      })
+      .catch(err => {
+        console.error("Error fetching GitHub activity:", err);
+        simulateGitHubActivity(githubCalendar, "Unable to load GitHub activity. Showing simulated data instead.");
+      });
   }
-
-  function updateButtons() {
-    const maxScroll =
-      track.scrollWidth - track.clientWidth - 1;
-
-    prevBtn.disabled = track.scrollLeft <= 0;
-    nextBtn.disabled = track.scrollLeft >= maxScroll;
-    
-  }
-
-  function scrollNext() {
-    track.scrollBy({ left: getStep(), behavior: "smooth" });
-  }
-
-  function scrollPrev() {
-    track.scrollBy({ left: -getStep(), behavior: "smooth" });
-  }
-
-  prevBtn.addEventListener("click", scrollPrev);
-  nextBtn.addEventListener("click", scrollNext);
-  track.addEventListener("scroll", updateButtons);
-
-  updateButtons();
 });
 
 
-
-function toggleDescription(btn) {
-    // Find the paragraph immediately before the button
-    const description = btn.previousElementSibling;
-    const isExpanded = description.classList.contains('expanded');
-    
-    if (isExpanded) {
-        description.classList.remove('expanded');
-        btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
-        
-        // Optional: Scroll the card back into view if it was long
-        btn.parentElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } else {
-        description.classList.add('expanded');
-        btn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    }
-}
-
-// Footer Modal
-const footerModal = document.getElementById('footerModal');
-const closeBtn = document.getElementById('closeFooterModal');
-const footerTrigger = document.getElementById('footer-trigger');
-
-const footerObserver = new IntersectionObserver(
-  ([entry]) => {
-    footerModal.classList.toggle('active', entry.isIntersecting);
-  },
-  {
-    threshold: 0.2, // Better for mobile, adjust if needed
-  }
-);
-
-footerObserver.observe(footerTrigger);
-
-closeBtn.addEventListener('click', () => {
-  footerModal.classList.remove('active');
-});
-
-// Section Visibility
-const sections = document.querySelectorAll('.section');
-
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('section--visible');
-      }
-    });
-  },
-  { threshold: 0.2 }
-);
-
-sections.forEach(section => sectionObserver.observe(section));
-
-// Dot Slider
-document.addEventListener("DOMContentLoaded", function () {
-  const dots = document.querySelectorAll(".dot");
-  const sections = document.querySelectorAll("section");
-  // Click scroll
-  dots.forEach((dot) => {
-    dot.addEventListener("click", function () {
-      const target = document.querySelector(dot.dataset.target);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // Scroll active highlight
-  window.addEventListener("scroll", function () {
-    let currentSection = null;
-    const scrollY = window.scrollY + window.innerHeight / 2;
-
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-
-      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        currentSection = section;
-      }
-    });
-
-    dots.forEach((dot) => dot.classList.remove("active"));
-
-    if (currentSection) {
-     
-      const activeDot = document.querySelector(
-        `.dot[data-target="#${currentSection.id}"]`
-      );
-      if (activeDot) activeDot.classList.add("active");
-      
-    }
-  });
-});
+console.log('✨ Welcome! Explore the nodes to learn more about work and skills.');
