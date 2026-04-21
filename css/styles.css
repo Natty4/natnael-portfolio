@@ -73,8 +73,8 @@ body::-webkit-scrollbar {
 }
 
 .profile-avatar {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: linear-gradient(135deg, #333333, #666666);
     display: flex;
@@ -500,4 +500,74 @@ strong {
 
 h4 {
     color: #ffffff;
+}
+
+.github-activity__avatar {
+  border-radius: 9999px;
+}
+
+.hero__stats {
+  margin-top: 9px;
+  display: flex;
+  justify-content: center;
+}
+
+.visit__count {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  align-items: center;
+  width: 50px;
+  color: #a0b2b3;
+  margin-top: 2px;
+  font-size: 0.6rem;
+
+}
+.count__icon {
+  padding-right: 3px;
+}
+
+.visit__count .count__icon svg {
+  
+  display: inline-block;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #000;
+  color: #fff;
+  text-align: left;
+  border-radius: 5px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* adjust depending on your layout */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  white-space: normal;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip .tooltiptext a {
+  color: #1e90ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.tooltip .tooltiptext a:hover {
+  text-decoration: underline;
 }

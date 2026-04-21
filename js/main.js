@@ -109,12 +109,12 @@ const nodes = [
     { id: 'Spark Processing', category: 'ai', color: 0x999999, size: 1.1, pos: [-4, -3, 6] },
 
     // Automation
-    { id: 'Agentic Workflows', category: 'automation', color: 0xa8c6f4e, size: 1.3, pos: [6, 5, -4] },
-    { id: 'Autonomous Agents', category: 'automation', color: 0xa8c6f4e, size: 1.2, pos: [8, 4, -2] },
-    { id: 'Workflow Engines', category: 'automation', color: 0xa8c6f4e, size: 1.2, pos: [5, 7, -1] },
-    { id: 'Self-healing Systems', category: 'automation', color: 0xa8c6f4e, size: 1.0, pos: [7, 3, -6] },
-    { id: 'CI/CD Automation', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [9, 6, -3] },
-    { id: 'Task Orchestration', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [4, 2, -7] },
+    { id: 'Agentic Workflows', category: 'automation', color: 0x8c6f4e, size: 1.3, pos: [6, 5, -4] },
+    { id: 'Autonomous Agents', category: 'automation', color: 0x8c6f4e, size: 1.2, pos: [8, 4, -2] },
+    { id: 'Workflow Engines', category: 'automation', color: 0x8c6f4e, size: 1.2, pos: [5, 7, -1] },
+    { id: 'Self-healing Systems', category: 'automation', color: 0x8c6f4e, size: 1.0, pos: [7, 3, -6] },
+    { id: 'CI/CD Automation', category: 'automation', color: 0x8c6f4e, size: 1.1, pos: [9, 6, -3] },
+    { id: 'Task Orchestration', category: 'automation', color: 0x8c6f4e, size: 1.1, pos: [4, 2, -7] },
 
     // Backend & Data Infrastructure
     { id: 'Scalable APIs', category: 'backend', color: 0x4b719b, size: 1.3, pos: [3, -5, 6] },
@@ -134,7 +134,7 @@ const nodes = [
     // Additional nodes (concise & relevant)
     { id: 'Knowledge Graphs', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-8, 7, 0] },
     { id: 'Embedding Pipelines', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-10, 4, -1] },
-    { id: 'Multi-Agent Systems', category: 'automation', color: 0xa8c6f4e, size: 1.1, pos: [8, 7, -5] },
+    { id: 'Multi-Agent Systems', category: 'automation', color: 0x8c6f4e, size: 1.1, pos: [8, 7, -5] },
     { id: 'Event-Driven Architecture', category: 'backend', color: 0x4b719b, size: 1.1, pos: [6, -7, 2] },
     { id: 'Cost-Optimized AI', category: 'ai', color: 0xaaaaaa, size: 1.0, pos: [-9, -2, 4] },
 ];
@@ -252,7 +252,7 @@ const categoryData = {
     },
     automation: {
         name: 'Automation & Agents',
-        color: '#a8c6f4e',
+        color: '#8c6f4e',
         description: 'Reliable autonomous workflows and intelligent agent systems.',
         solutions: [
             { title: 'Agentic Workflow Engines', desc: 'Self-running systems that reason, adapt, and complete multi-step business processes without human intervention.' },
@@ -429,7 +429,7 @@ function simulateGitHubActivity(container, message = null) {
     messageEl.className = "github-calendar-message";
     messageEl.style.color = "var(--color-warning, #f39c12)";
     messageEl.style.marginBottom = "10px";
-    messageEl.style.fontSize = "0.85rem";
+    messageEl.style.fontSize = "0.7rem";
     messageEl.style.textAlign = "center";
     messageEl.textContent = message;
     container.appendChild(messageEl);

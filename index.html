@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Natnael K. | AI & Data Engineer</title>
-    <meta name="description" content="AI & Data Engineer focused on building reliable, scalable systems. Specializing in AI orchestration, data pipelines, automation, and custom software solutions.">
+    <title>Natnael K. | AI & Data Engineer | ML Engineer | Software Engineer | Remote Developer</title>
     <meta name="description" content="AI & Data Engineer specializing in RAG systems, data science, intelligent automation, scalable backends, and custom solutions across finance, health, and ecommerce.">
+
    
     <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>λ</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-weight='bold' fill='%23F97316'>λ</text></svg>">
    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://Natty4.vercel.app/">
+    <meta property="og:title" content="Natnael | Software Engineer | Python Backend Developer | ML Engineer">
+    <meta property="og:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, and Machine Learning projects. Available for remote / hybrid opportunities.">
+    <meta property="og:image" content="https://Natty4.vercel.app/assets/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://Natty4.vercel.app/">
+    <meta property="twitter:title" content="Natnael | AI Data Engineer | Software Engineer | Python Developer | ML Engineer">
+    <meta property="twitter:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, and Machine Learning projects. Available for remote / hybrid opportunities.">
+    <meta property="twitter:image" content="https://Natty4.vercel.app/assets/images/og-image.jpg">
+
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +31,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
    
     <link rel="stylesheet" href="css/styles.css">
+
+
+     <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Natnael",
+      "jobTitle": "AI & Data Engineer | Software Engineer | Python Developer | Data Engineer | ML Engineer",
+      "url": "https://Natty4.vercel.app",
+      "sameAs": [
+        "https://linkedin.com/in/natnael-k-23051021a",
+        "https://github.com/Natty4"
+      ],
+      "knowsAbout": ["Python", "AI", "RAG", "LLM", "Datascience", "Automation", "Django", "REST APIs", "Machine Learning", "FastAPI", "PostgreSQL", "MongoDB", "JavaScript", "Docker", "Git",],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Available for Remote | Hybrid Opportunities"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "Computer Science and Engineering"
+      }
+    }
+    </script>
+
+    <script>
+        (function() {
+          const domain = 'natty4.vercel.app';
+          const apiKey = '9PGOSlLsz';
+          const origin = 'https://visitapi-s28n.onrender.com';
+          fetch(`${origin}/api/visit/${domain}?key=${apiKey}`)
+            .then(response => response.json())
+            .then(data => console.log('Visit recorded'));
+        })();
+    </script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -26,7 +76,7 @@
             <div class="loader-bar">
                 <div class="loader-progress"></div>
             </div>
-            <p style="margin-top: 20px; color: #aaaaaa; font-size: 0.9rem;">Initializing Natnael's World...</p>
+            <p style="margin-top: 20px; color: #aaaaaa; font-size: 0.9rem;">Initializing Z World...</p>
         </div>
     </div>
 
@@ -35,7 +85,37 @@
 
     <!-- Floating Profile Card -->
     <div class="profile-card" data-modal="profile">
-        <div class="profile-avatar">λ</div>
+        <div>
+            <div class="profile-avatar">λ</div>
+            <div class="hero__stats">
+                <a href="https://visitapi-s28n.onrender.com/" target="_blank" rel="noopener noreferrer" class="tooltip">
+                    <div class="visit__count">
+                        <span class="tooltiptext">
+                                Learn more about Visit Tracker
+                        </span>
+                        <span class="count__icon">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                        
+                        <span class="" id="visitCount">
+                            &qfr;
+                        </span>
+                    </div>
+                </a>
+                <script>
+                    (function() {
+                        const domain = 'natty4.vercel.app';
+                        const apiKey = '9PGOSlLsz';
+                        const origin = 'https://visitapi-s28n.onrender.com';
+                        fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
+                            });
+                    })();
+                </script>
+            </div>
+        </div>
         <div class="profile-info">
             <h2>Natnael K.</h2>
             <p class="profile-title"><span class="status-indicator"></span> AI & Data Engineer</p>
@@ -141,12 +221,15 @@
             <div class="modal-close">&times;</div>
         </div>
         <div style="text-align: center; padding: 20px 0 10px;">
-            <i class="fab fa-github" style="font-size: 3.8rem; color: #cccccc; margin-bottom: 12px;"></i>
-            <h4 style="margin-bottom: 6px; color: #ffffff;">@Natty4</h4>
-            <p style="color: #aaaaaa; margin-bottom: 24px;">AI & Data Systems Engineer</p>
-            <p style="color: #cccccc; max-width: 420px; margin: 0 auto;">
-                <!-- Projects and experiments in backend systems, automation, data processing, data science, and practical AI applications. -->
-            </p>
+            <!-- <i class="fab fa-github" style="font-size: 3.8rem; color: #cccccc; margin-bottom: 12px;"></i> -->
+            <div class="github-activity__profile">
+                <img src="https://avatars.githubusercontent.com/u/56716832?v=4" alt="GitHub Profile" width="60" height="60" loading="lazy" class="github-activity__avatar">
+                <h4 style="margin-bottom: 6px; color: #ffffff;">@Natty4</h4>
+                <p style="color: #aaaaaa; margin-bottom: 24px;">AI & Data Engineer</p>
+                <p style="color: #cccccc; max-width: 420px; margin: 0 auto;">
+                    <!-- Projects and experiments in backend systems, automation, data processing, data science, and practical AI applications. -->
+                </p>
+            </div>
         </div>
         
         <!-- GitHub Contribution Calendar Container -->
@@ -154,7 +237,8 @@
 
         <div style="text-align: center; margin-top: 28px;">
             <a href="https://github.com/Natty4" target="_blank" class="modal-link">
-                <i class="fab fa-github"></i> View Full GitHub Profile
+                <img src="https://avatars.githubusercontent.com/u/56716832?v=4" alt="GitHub Profile" width="30" height="30" loading="lazy" class="github-activity__avatar">
+                 View Full GitHub Profile
             </a>
         </div>
     </div>
@@ -171,7 +255,7 @@
         <div style="margin-bottom: 24px;">
             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: #cccccc;"><i class="fas fa-envelope" style="width: 24px;"></i> natty7kt@gmail.com</div>
             <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: #cccccc;"><i class="fas fa-phone" style="width: 24px;"></i> +2519-243-25817</div>
-            <div style="display: flex; align-items: center; gap: 12px; color: #cccccc;"><i class="fas fa-map-marker-alt" style="width: 24px;"></i>• Worldwide Remote / Hybrid</div>
+            <div style="display: flex; align-items: center; gap: 12px; color: #cccccc;"><i class="fas fa-map-marker-alt" style="width: 24px;"></i> Remote | Hybrid • Worldwide</div>
         </div>
         <div style="display: flex; gap: 16px;">
             <a href="https://www.linkedin.com/in/natnael-k-23051021a" class="modal-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
