@@ -335,7 +335,7 @@ function showCategoryModal(category, nodeId) {
         html += `
             <div class="project-item">
                 <h5 style="margin-bottom: 6px; color: #ffffff;">
-                  • 
+                  <i style="color: ${data.color}; font-size: 0.9rem; margin-right: 8px;">• </i>
                   ${sol.title}
                 </h5>
                 <p style="color: #cccccc; line-height: 1.5;">${sol.desc}</p>
