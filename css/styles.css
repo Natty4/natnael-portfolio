@@ -255,8 +255,12 @@ body::-webkit-scrollbar {
  #modal-category.hologram-modal {
     width: 1000px;
 }
-#modal-skills.hologram-modal {
+#modal-skills.hologram-modal,
+#modal-about.hologram-modal {
   width: 800px;
+}
+#modal-profile.hologram-modal {
+    width: 400px;
 }
 .modal-overlay {
     position: fixed;
