@@ -1123,3 +1123,13 @@ new ResizeObserver(() => {
     const w = skillsContainer.clientWidth, h = skillsContainer.clientHeight;
     sCamera.aspect = w / h; sCamera.updateProjectionMatrix(); sRenderer.setSize(w, h);
 }).observe(skillsContainer);
+
+
+console.log(
+  "%cλ system::dev_mode_activated",
+  "color:#3aa0ff; font-family:monospace; font-size:96px; font-weight:700; text-shadow:0 0 8px rgba(58,160,255,0.6);"
+);
+console.log(
+  "%c hello, fellow debugger",
+  "color:#3aa0ff; font-family:monospace; font-size:96px; font-weight:700; text-shadow:0 0 8px rgba(58,160,255,0.6);"
+);
