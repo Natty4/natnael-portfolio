@@ -774,6 +774,8 @@ body {
   /* text-shadow: 0 0 5px #0f93e6, 0 0 10px #0f93e6; */
   /* font-weight: bold; */
   /* font-size: 1rem; */
+  margin-top: var(--space-sm);
+  color: var(--text-primary);
 }
 
 @keyframes heartbeat {
