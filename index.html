@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Natnael | AI & Data Engineer | ML Engineer | Software Engineer | Remote Developer</title>
+    <title>Natnael | AI & Data Engineer</title>
     <meta name="description" content="AI & Data Engineer specializing in RAG systems, data science, intelligent automation, scalable backends, and custom solutions across finance, health, and ecommerce.">
 
    
@@ -14,21 +14,21 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://Natty4.vercel.app/">
     <meta property="og:title" content="Natnael | AI and Data Engineer | Software Engineer | Python Developer | ML Engineer">
-    <meta property="og:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, and Machine Learning projects. Available for remote / hybrid opportunities.">
+    <meta property="og:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, Machine Learning projects and custom software solution. Available for remote / hybrid opportunities.">
     <meta property="og:image" content="https://Natty4.vercel.app/assets/images/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://Natty4.vercel.app/">
     <meta property="twitter:title" content="Natnael | AI and Data Engineer | Software Engineer | Python Developer | ML Engineer">
-    <meta property="twitter:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, and Machine Learning projects. Available for remote / hybrid opportunities.">
+    <meta property="twitter:description" content="AI and Data Engineering with years of experience in Python, RAG, Datascience, Django, APIs, Automation, Machine Learning projects and custom software solution. Available for remote / hybrid opportunities.">
     <meta property="twitter:image" content="https://Natty4.vercel.app/assets/images/og-image.jpg">
 
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+
    
     <link rel="stylesheet" href="css/styles.css">
 
@@ -45,7 +45,7 @@
         "https://linkedin.com/in/natnael-k-23051021a",
         "https://github.com/Natty4"
       ],
-      "knowsAbout": ["Python", "AI", "RAG", "LLM", "Datascience", "Automation", "Django", "REST APIs", "Machine Learning", "FastAPI", "PostgreSQL", "MongoDB", "JavaScript", "Docker", "Git",],
+      "knowsAbout": ["Python", "AI", "RAG", "LLM", "Datascience", "Automation", "Django", "REST APIs", "Machine Learning", "Website", "Software", "Custom Solution", "FastAPI", "PostgreSQL", "MongoDB", "JavaScript", "Docker", "Git",],
       "worksFor": {
         "@type": "Organization",
         "name": "Available for Remote | Hybrid Opportunities"
@@ -56,279 +56,500 @@
       }
     }
     </script>
-
-    <script>
-        (function() {
-          const domain = 'natty4.vercel.app';
-          const apiKey = '9PGOSlLsz';
-          const origin = 'https://visitapi-s28n.onrender.com';
-          fetch(`${origin}/api/visit/${domain}?key=${apiKey}`)
-            .then(response => response.json())
-            .then(data => console.log('Visit recorded'));
-        })();
-    </script>
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading">
-        <div class="loader">
-            <h2>λ Natty4</h2>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-            <p style="margin-top: 20px; color: #aaaaaa; font-size: 0.9rem;">Initializing Z World...</p>
-        </div>
-    </div>
-
-    <!-- 3D Canvas -->
-    <div id="canvas-container"></div>
-
-    <!-- Floating Profile Card -->
-    <div class="profile-card" data-modal="profile">
-        <div>
-            <div class="profile-avatar">λ</div>
-            <div class="hero__stats">
-                <a href="https://visitapi-s28n.onrender.com/" target="_blank" rel="noopener noreferrer" class="tooltip">
-                    <div class="visit__count">
-                        <span class="tooltiptext">
-                                Learn more about Visit Tracker
-                        </span>
-                        <span class="count__icon">
-                            <i class="fas fa-eye"></i>
-                        </span>
-                        
-                        <span class="" id="visitCount">
-                            &qfr;
-                        </span>
-                    </div>
-                </a>
-                <script>
-                    (function() {
-                        const domain = 'natty4.vercel.app';
-                        const apiKey = '9PGOSlLsz';
-                        const origin = 'https://visitapi-s28n.onrender.com';
-                        fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
-                            });
-                    })();
-                </script>
-            </div>
-        </div>
-        <div class="profile-info">
-            <h2>Natnael K.</h2>
-            <p class="profile-title"><span class="status-indicator"></span> Engineer</p>
-            <p class="profile-tagline">Remote | Hybrid • Available</p>
-        </div>
-    </div>
-
-    <!-- Navigation Dots -->
-    <div class="nav-dots">
-        <div class="nav-dot" data-modal="about"><i class="fas fa-user"></i><span>About</span></div>
-        <div class="nav-dot" data-modal="skills"><i class="fas fa-microchip"></i><span>Skills</span></div>
-        <div class="nav-dot" data-modal="github"><i class="fab fa-github"></i><span>GitHub</span></div>
-        <div class="nav-dot" data-modal="contact"><i class="fas fa-envelope"></i><span>Contact</span></div>
-    </div>
-
-    <!-- System Map Legend -->
-    <div class="system-legend">
-        <div class="legend-title">SYSTEM MAP</div>
-        <div class="legend-items">
-            <div class="legend-item"><span class="legend-dot engineer"></span> Core · Engineer</div>
-            <div class="legend-item"><span class="legend-dot ai"></span> AI & Data Systems</div>
-            <div class="legend-item"><span class="legend-dot automation"></span> Automation</div>
-            <div class="legend-item"><span class="legend-dot backend"></span> Backend</div>
-            <div class="legend-item"><span class="legend-dot custom"></span> Custom Solutions</div>
-        </div>
-    </div>
-
-    <!-- Interactive Hint -->
-    <div class="interactive-hint">
-        <i class="fas fa-mouse"></i> Drag to rotate · Click nodes to explore
-    </div>
-
-    <!-- Modal Overlay -->
-    <div class="modal-overlay" id="modalOverlay"></div>
-
-    <!-- Profile Modal -->
-    <div class="hologram-modal" id="modal-profile">
-        <div class="modal-header">
-            <h3><i class="fas fa-user-astronaut"></i> Profile</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <div style="text-align: center; margin-bottom: 24px;">
-            <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #333333, #666666); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-size: 40px; border: 3px solid rgba(255,255,255,0.2);">λ</div>
-            <h4 style="font-size: 1.5rem; margin-bottom: 4px;">Natnael K.</h4>
-            <p style="color: #aaaaaa;">AI & Data Engineer</p>
-        </div>
-        <p style="line-height: 1.6; color: #cccccc; text-align: center;">
-            I build reliable systems across AI, data science, and custom software solution, focusing on clean architecture, scalable backends, and practical ML integration that delivers measurable results.
-        </p>
-    </div>
-
-    <!-- About Modal -->
-    <div class="hologram-modal" id="modal-about">
-        <div class="modal-header">
-            <h3><i class="fas fa-user"></i> About</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <p style="margin-bottom: 20px; line-height: 1.6; color: #cccccc;">
-            Solutions-driven AI & Data Engineer with strong backend foundations. 
-            I design and implement systems that combine robust data pipelines, intelligent automation, and scalable APIs.
-        </p>
-        <p style="margin-bottom: 20px; line-height: 1.6; color: #cccccc;">
-            My approach centers on clarity, reliability, and delivering working solutions efficiently — whether building ML-supported tools, automating workflows, or creating custom internal systems.
-        </p>
-        <h4 style="margin: 20px 0 16px;">Core Focus Areas</h4>
-        <div class="strength-item"><i class="fas fa-brain" style="margin-right: 12px;"></i> <strong>AI & ML Systems</strong> — Practical integration of models into production workflows</div>
-        <div class="strength-item"><i class="fas fa-cogs" style="margin-right: 12px;"></i> <strong>Automation & Orchestration</strong> — Reliable agents and workflow engines</div>
-        <div class="strength-item"><i class="fas fa-server" style="margin-right: 12px;"></i> <strong>Backend & Data Infrastructure</strong> — Scalable APIs, databases, and pipelines</div>
-        <div class="strength-item"><i class="fas fa-puzzle-piece" style="margin-right: 12px;"></i> <strong>Custom Solutions</strong> — Tailored tools that solve specific operational problems</div>
-    </div>
-
-    <!-- Skills Modal -->
-    <div class="hologram-modal" id="modal-skills">
-        <div class="modal-header">
-            <h3><i class="fas fa-microchip"></i> Technical Skills</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <h4 style="margin-bottom: 16px;">Core Engineering Capabilities</h4>
-        <div class="project-tags" style="margin-bottom: 24px;">
-            <span class="project-tag">RAG Systems</span>
-            <span class="project-tag">Data Science</span>
-            <span class="project-tag">LLM Orchestration</span>
-            <span class="project-tag">Vector Search</span>
-            <span class="project-tag">Real-time Pipelines</span>
-            <span class="project-tag">Predictive Analytics</span>
-            <span class="project-tag">Automation Agents</span>
-            <span class="project-tag">Scalable Backends</span>
-            <span class="project-tag">Domain Applications</span>
-            <!-- <span class="project-tag">Finance • Health • Ecommerce</span> -->
-        </div>
-        <h4 style="margin: 20px 0 16px;">Engineering Focus</h4>
-        <div class="skill-item"><i class="fas fa-cube" style="margin-right: 12px;"></i> <strong>RAG &amp; AI Systems</strong> — Production-ready retrieval pipelines with low hallucination across finance, healthcare, and ecommerce</div>
-        <div class="skill-item"><i class="fas fa-chart-line" style="margin-right: 12px;"></i> <strong>Data Science &amp; ML</strong> — End-to-end data exploration, modeling, and deployment</div>
-        <div class="skill-item"><i class="fas fa-bolt" style="margin-right: 12px;"></i> <strong>Intelligent Automation</strong> — Autonomous workflows and agentic systems</div>
-        <div class="skill-item"><i class="fas fa-server" style="margin-right: 12px;"></i> <strong>Backend &amp; Data Infrastructure</strong> — Reliable, scalable APIs and processing pipelines</div>
-        <div class="skill-item"><i class="fas fa-puzzle-piece" style="margin-right: 12px;"></i> <strong>Custom Solutions</strong> — Tailored systems that turn complex domain problems into working products</div>
-    </div>
-
-    <!-- GitHub Modal -->
-    <div class="hologram-modal" id="modal-github">
-        <div class="modal-header">
-            <h3><i class="fab fa-github"></i> GitHub Activity</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <div style="text-align: center; padding: 20px 0 10px;">
-            <!-- <i class="fab fa-github" style="font-size: 3.8rem; color: #cccccc; margin-bottom: 12px;"></i> -->
-            <div class="github-activity__profile">
-                <img src="https://avatars.githubusercontent.com/u/56716832?v=4" alt="GitHub Profile" width="60" height="60" loading="lazy" class="github-activity__avatar">
-                <h4 style="margin-bottom: 6px; color: #ffffff;">@Natty4</h4>
-                <p style="color: #aaaaaa; margin-bottom: 24px;">AI & Data Engineer</p>
-                <p style="color: #cccccc; max-width: 420px; margin: 0 auto;">
-                    <!-- Projects and experiments in backend systems, automation, data processing, data science, and practical AI applications. -->
-                </p>
-            </div>
-        </div>
-        
-        <!-- GitHub Contribution Calendar Container -->
-        <div id="github-calendar" style="margin: 0 auto; max-width: 620px; padding: 0 20px; overflow: hidden;"></div>
-
-        <div style="text-align: center; margin-top: 28px;">
-            <a href="https://github.com/Natty4" target="_blank" class="modal-link">
-                <img src="https://avatars.githubusercontent.com/u/56716832?v=4" alt="GitHub Profile" width="30" height="30" loading="lazy" class="github-activity__avatar">
-                 View Full GitHub Profile
-            </a>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div class="hologram-modal" id="modal-contact">
-        <div class="modal-header">
-            <h3><i class="fas fa-envelope"></i> Get In Touch</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <p style="margin-bottom: 24px; color: #cccccc;">
-            Open to discussions on AI systems, Datascience, automation, backend architecture, and custom engineering challenges.
-        </p>
-        <div style="margin-bottom: 24px;">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: #cccccc;"><i class="fas fa-envelope" style="width: 24px;"></i> natty7kt@gmail.com</div>
-            <!-- <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; color: #cccccc;"><i class="fas fa-phone" style="width: 24px;"></i> 404.</div> -->
-            <div style="display: flex; align-items: center; gap: 12px; color: #cccccc;"><i class="fas fa-map-marker-alt" style="width: 24px;"></i> Remote | Hybrid • Worldwide</div>
-        </div>
-        <div style="display: flex; gap: 16px;">
-            <a href="https://www.linkedin.com/in/natnael-k-23051021a" class="modal-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="#" class="modal-link"><i class="fa-brands fa-x-twitter"></i></a>
-        </div>
-    </div>
-
-    <!-- Category Detail Modal -->
-    <div class="hologram-modal" id="modal-category">
-        <div class="modal-header">
-            <h3 id="category-title"><i class="fas fa-diagram-project"></i> Category Details</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        <div id="category-content"></div>
-    </div>
-
-    <!-- Summary / TL;DR Modal -->
-    <div class="hologram-modal" id="modal-remote">
-        <div class="modal-header">
-            <h3 style="margin: 0 auto;">TL;DR</h3>
-            <div class="modal-close">&times;</div>
-        </div>
-        
-        <div style="margin: 20px 0 32px;">
-            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; justify-content: center;">
-
-                <div style="text-align: center;">
-                    <div style="font-size: 1.8rem; font-weight: 300; color: #e0e0e0;">λ</div>
-                    <p style="color: #bbbbbb; font-size: 1.05rem;">AI & Data Engineer</p>
-                </div>
-            </div>
-
-            <table style="width: 100%; border-collapse: collapse; color: #cccccc; font-size: 0.95rem;">
-                <tbody>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.12);">
-                        <td style="padding: 13px 0; width: 140px; color: #aaaaaa;">Name</td>
-                        <td style="padding: 13px 0;">Natnael K.</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.12);">
-                        <td style="padding: 13px 0; color: #aaaaaa;">Focus</td>
-                        <td style="padding: 13px 0;">AI, RAG systems, data science, intelligent automation, scalable backends & custom software solutions</td>
-                    </tr>
-                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.12);">
-                        <td style="padding: 13px 0; color: #aaaaaa;">Approach</td>
-                        <td style="padding: 13px 0;">• Clean architecture • Problem-first design • Reliable, production-ready delivery</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 13px 0; color: #aaaaaa;">Domains</td>
-                        <td style="padding: 13px 0;">• Finance • Healthcare • Ecommerce • Operational systems</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #555555;">
-            Natnael © 2026
-        </div>
-
-        <div style="text-align: center; color: #aaaaaa; font-size: 0.78rem; line-height: 1.5; margin-top: 32px;">
-            Grateful for your time. Wishing you purpose and peace in your work 
-            <span style="color:#b0b0b0;">💙</span>
-        </div>
-    </div>
-
-    <!-- Three.js Import Map -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script type="importmap">
-        {
-            "imports": {
-                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
-                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        void: '#030303',
+                        ink: '#080808',
+                        surface: '#0d0d0d',
+                        elevated: '#141414',
+                        border: '#1f1f1f',
+                        subtle: '#666666',
+                        muted: '#444444',
+                        ghost: '#2a2a2a',
+                        frost: '#e8e8e8',
+                        silver: '#b0b0b0',
+                        accent: '#ffffff',
+                    }
+                }
             }
         }
     </script>
+    <base target="_blank">
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="l-txt font-mono text-xs tracking-[0.4em]">INITIALIZING</div>
+        <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+
+    <!-- Overlays -->
+    <div class="scanlines"></div>
+    <div class="crt-vignette"></div>
+    <div class="noise"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- 3D Workstation Canvas -->
+    <canvas id="workstation-canvas"></canvas>
+
+    <!-- HUD Layer -->
+    <div class="relative z-10 pointer-events-none min-h-screen flex flex-col justify-between p-4 md:p-6 lg:p-8" id="hud-layer">
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div></div>
+            <div class="hud-card sys-time px-2 py-2 flex items-center gap-3" data-hover>
+                <div class="w-2 h-2 rounded-full bg-green-400 pulse-glow"></div>
+                <span class="font-mono text-[10px] tracking-[0.3em]">SYSTEM ONLINE</span>
+                <span class="font-mono text-[10px]">|</span>
+                <span class="font-mono text-[10px]" id="top-clock">00:00:00 UTC</span>
+            </div>
+        </div>
+
+        <!-- Floating Profile Card -->
+        <div class="profile-card" data-modal="profile" onclick="openModal()">
+            <div>
+                <div class="profile-avatar">λ</div>
+                <div class="hero__stats">
+                    <a href="https://visitapi-s28n.onrender.com/" target="_blank" rel="noopener noreferrer" class="tooltip">
+                        <div class="visit__count">
+                            <span class="tooltiptext">
+                                    Learn more about Visit Tracker
+                            </span>
+                            <span class="count__icon">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                            
+                            <span class="" id="visitCount">
+                                &qfr;
+                            </span>
+                        </div>
+                    </a>
+                    <script>
+                        (function() {
+                            const domain = 'natty4.vercel.app';
+                            const apiKey = '9PGOSlLsz';
+                            const origin = 'https://visitapi-s28n.onrender.com';
+                            fetch(`${origin}/api/stats/${domain}?key=${apiKey}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById('visitCount').innerHTML = `${data.total_visits}+ `;
+                                });
+                        })();
+                    </script>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h2>Natnael K.</h2>
+                <p class="profile-title"><span class="status-indicator"></span>Engineer</p>
+                <p class="profile-tagline">• Available Remote | Hybrid</p>
+            </div>
+        </div>
+        <!-- Center Content -->
+        <div class="hud-container">
+
+            <!-- Left HUD -->
+             <div class="hud-box flex flex-col gap-4 items-end pointer-events-auto">
+                <div class="hud-card p-5 reveal" style="transition-delay:0.2s" data-hover>
+                    <div class="hud-card-title font-mono text-[9px] tracking-[0.3em] mb-3 text-right">CAPABILITY ZONES</div>
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">AI Integration</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5 group-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.25 15L17.5 17.625l-2.625.75 2.625.75.75 2.625.75-2.625 2.625-.75-2.625-.75-.75-2.625z" /></svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">LLM Fine-tuning</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5 group-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">MLOps & Pipelines</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5 group-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">System Architecture</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5 group-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">API Design</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5 group-hover" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-end gap-3 group cursor-pointer" data-hover>
+                            <span class="text-[11px] group-hover transition-colors">Software & Automation Solution</span>
+                            <div class="w-7 h-7 rounded-md bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-white/25 transition-colors">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6h7v5H3zM14 6h7v5h-7zM8 11v3m8-3v3M3 16h7v5H3zM14 16h7v5h-7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right HUD -->
+            <div class="hud-box flex flex-col gap-4 pointer-events-auto">
+                <div class="hud-card p-5 reveal" style="transition-delay:0.1s" data-hover>
+                    <div class="hud-card-title font-mono text-[9px] tracking-[0.3em] mb-3">SOLUTIONS DELIVERED λ</div>
+                    <div class="flex items-baseline gap-2 mb-4">
+                        <span class="text-3xl font-display font-light">36+</span>
+                        <span class="text-xs">builds</span>
+                    </div>
+                    <div class="space-y-2.5">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px]">Backend / API</span>
+                            <div class="flex items-center gap-2">
+                                <div class="stat-bar w-16"><div class="stat-fill" style="width:85%"></div></div>
+                                <span class="font-mono text-[10px]">12</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px]">Fullstack</span>
+                            <div class="flex items-center gap-2">
+                                <div class="stat-bar w-16"><div class="stat-fill" style="width:70%"></div></div>
+                                <span class="font-mono text-[10px]">9</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px]">AI / ML</span>
+                            <div class="flex items-center gap-2">
+                                <div class="stat-bar w-16"><div class="stat-fill" style="width:55%"></div></div>
+                                <span class="font-mono text-[10px]">9</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[11px]">Data Science</span>
+                            <div class="flex items-center gap-2">
+                                <div class="stat-bar w-16"><div class="stat-fill" style="width:40%"></div></div>
+                                <span class="font-mono text-[10px]">6</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="flex justify-between items-end pointer-events-auto">
+            <div class="font-mono text-[9px] tracking-wider">
+                SCROLL DOWN TO EXPLORE · DRAG TO ROTATE
+            </div>
+            <div class="flex gap-4 more-info">
+                <button class="hud-card rounded-lg flex justify-between gap-2 items-center px-4 py-2 font-mono text-[10px] hover transition-colors" data-hover onclick="openModal()">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                     <span> VIEW MORE</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: INTELLIGENCE PANEL ===== -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-panel" id="modal-panel">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between px-6 py-4 modal-header">
+            <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-white/30"></div>
+                <span class="font-mono text-[10px] tracking-[0.3em]">INTELLIGENCE PANEL</span>
+            </div>
+            <button onclick="closeModal()" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors" data-hover>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="modal-scroll">
+            <!-- Section 1 -->
+            <div class="mb-12">
+                <div class="font-mono text-[10px] tracking-[0.4em] mb-6">PROBLEM DOMAINS</div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="project-card" data-hover>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                        </div>
+                        <h3 class="text-lg font-display font-light mb-2">AI Integration</h3>
+                        <p class="text-xs leading-relaxed mb-4">Embedding LLMs and ML models into production systems. From RAG pipelines to domain-specific fine-tuned models that understand your business context.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tag">OpenAI</span><span class="tag">HuggingFace</span><span class="tag">LangChain...</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-hover>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                        </div>
+                        <h3 class="text-lg font-display font-light mb-2">System Architecture</h3>
+                        <p class="text-xs leading-relaxed mb-4">Scalable backend architectures, API design, and database optimization. Building distributed systems that handle millions of requests with elegance.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tag">Docker</span><span class="tag">PostgreSQL</span><span class="tag">Redis...</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-hover>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <h3 class="text-lg font-display font-light mb-2">Fullstack Products</h3>
+                        <p class="text-xs leading-relaxed mb-4">End-to-end product development from concept to deployment. React frontends paired with robust backends and AI-powered features.</p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="tag">Next.js</span><span class="tag">FastAPI</span><span class="tag">REST/GraphQL...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="mb-12">
+                <div class="font-mono text-[10px] tracking-[0.4em] mb-4">CAPABILITY MATRIX</div>
+                <div class="hud-card rounded-2xl p-1 border border-white/5 relative">
+                    <div id="skills-canvas"></div>
+                    <div class="skill-tooltip" id="skill-tooltip">
+                        <div class="tooltip-name"></div>
+                        <div class="tooltip-cat"></div>
+                        <div class="level-bar"><div class="level-fill"></div></div>
+                        <div class="level-text"></div>
+                    </div>
+                </div>
+                <div class="flex gap-6 mt-4 justify-center">
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-white/80" style="background: #88ccff"></div><span class="font-mono text-[9px]">AI/ML</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-white/50" style="background: #ffaa88"></div><span class="font-mono text-[9px]">BACKEND</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-white/30" style="background: #88ffaa"></div><span class="font-mono text-[9px]">FRONTEND</span></div>
+                    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-white/15" style="background: #ff88cc"></div><span class="font-mono text-[9px]">DEVOPS</span></div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="mb-12">
+                <div class="font-mono text-[10px] tracking-[0.4em] mb-6">SOLUTION PORTFOLIO</div>
+
+                <!-- Data Science -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-1 h-4 bg-white/20 rounded-full"></div>
+                        <span class="font-mono text-[10px] tracking-[0.2em]">DATA SCIENCE & ANALYTICS</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Customer Experience Analytics</h4>
+                                <span class="tag">Fintech</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Scraping, analyzing, and visualizing Google Play Store reviews for fintech apps. Real-world data engineering challenge.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Insurance Risk Analytics</h4>
+                                <span class="tag">Predictive</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Uncovering low-risk segments and building smart models that optimize premiums using real insurance data.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Amharic E-commerce Data Extractor</h4>
+                                <span class="tag">NLP</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Transforming messy Telegram posts into a smart FinTech engine for loan candidate identification.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Credit Risk Probability Model</h4>
+                                <span class="tag">Alternative Data</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">End-to-end implementation for building, deploying, and automating a credit risk model.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Intelligent Complaint Analysis</h4>
+                                <span class="tag">RAG</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">RAG-powered chatbot turning customer feedback into actionable insights for financial services.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Telegram Data Pipeline</h4>
+                                <span class="tag">MLOps</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">dbt transformation, Dagster orchestration, YOLOv8 enrichment — from raw data to analytical API.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Fraud Detection System</h4>
+                                <span class="tag">Security</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Improved detection of fraud cases for e-commerce and bank transactions.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Portfolio Management Optimization</h4>
+                                <span class="tag">Time Series</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">ARIMA/SARIMA + LSTM forecasting for TSLA, BND, SPY. Efficient Frontier simulation and MPT implementation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API & Fullstack -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-1 h-4 bg-white/20 rounded-full"></div>
+                        <span class="font-mono text-[10px] tracking-[0.2em]">API & FULLSTACK</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">REST API Development</h4>
+                                <span class="tag">Lead Dev</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Lead REST API developer on 6+ production projects. Designed scalable endpoints for high-throughput systems.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Fullstack Applications</h4>
+                                <span class="tag">6+ Projects</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">End-to-end web applications from database design to responsive frontend implementation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI & RAG -->
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-1 h-4 bg-white/20 rounded-full"></div>
+                        <span class="font-mono text-[10px] tracking-[0.2em]">AI & RAG SYSTEMS</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">Personal Medical Assistant</h4>
+                                <span class="tag">RAG</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">AI-powered medical consultation system with retrieval-augmented generation.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">AI Tour Guide</h4>
+                                <span class="tag">LLM</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Intelligent travel companion leveraging large language models for personalized recommendations.</p>
+                        </div>
+                        <div class="project-card" data-hover>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-sm font-medium">AI Ad Matching Engine</h4>
+                                <span class="tag">ML</span>
+                            </div>
+                            <p class="text-[11px] leading-relaxed">Machine learning-powered advertisement matching system for optimal targeting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="mb-12">
+                <div class="flex justify-between items-end mb-6">
+                    <div class="font-mono text-[10px] tracking-[0.4em]">COMMIT ACTIVITY</div>
+                    <div id="fetch-status" class="hidden text-[8px] font-mono text-orange-400 animate-pulse">
+                        Unable to load latest. showing simulated data instead.
+                    </div>
+                </div>
+                
+                <div class="hud-card p-6" data-hover>
+                    <div class="flex items-center gap-4 mb-6 pb-6 border-b border-white/10">
+                        <a href="https://github.com/natty4" target="_blank" class="shrink-0">
+                            <img id="gh-avatar" src="https://github.com/natty4.png" alt="Avatar" class="w-12 h-12 rounded-full border border-white/20 hover:border-white/50 transition-colors">
+                        </a>
+                        <div>
+                            <a href="https://github.com/natty4" target="_blank" class="block text-lg font-display hover:text-green-400 transition-colors" id="gh-username">
+                                Natty4
+                            </a>
+                            <div class="text-[10px] font-mono opacity-50 uppercase tracking-tighter">View Profile</div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <div class="text-2xl font-display font-light" id="total-commits">0</div>
+                            <div class="text-[10px] font-mono tracking-wider">TOTAL ACTIVITY</div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-lg font-display font-light" id="day-streak">--</div>
+                            <div class="text-[10px] font-mono tracking-wider">LATEST PUSH</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div id="modal-commit-chart" class="commit-grid"></div>
+                    </div>
+
+                    <div class="flex justify-between mt-4 items-center">
+                        <span class="font-mono text-[8px]">Less</span>
+                        <div class="flex gap-1">
+                            <div class="w-2.5 h-2.5 rounded-sm" style="background: var(--commit-color)"></div>
+                            <div class="w-2.5 h-2.5 rounded-sm" style="background: #0e4429"></div>
+                            <div class="w-2.5 h-2.5 rounded-sm" style="background: #006d32"></div>
+                            <div class="w-2.5 h-2.5 rounded-sm" style="background: #26a641"></div>
+                            <div class="w-2.5 h-2.5 rounded-sm" style="background: #39d353"></div>
+                        </div>
+                        <span class="font-mono text-[8px]">More</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="text-center pt-8 border-t border-white/5">
+                <p class= text-sm mb-6">Ready to build intelligent systems?</p>
+                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mt-3">
+                    <a href="mailto:natty7kt@gmail.com" 
+                        class="mail-btn inline-flex items-center justify-center px-6 py-3 font-mono text-xs tracking-wider rounded-full transition-all" 
+                        data-hover>
+                        INITIATE CONTACT
+                    </a>
+
+                    <button 
+                        onclick="copyEmail(this)" 
+                        class="cp-btn p-3 hover:bg-white/20 transition-all border border-white/20"
+                        title="Copy email address"
+                        aria-label="Copy email address">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-8 flex justify-center gap-6">
+                    <a href="#" class="font-mono text-[10px] hover transition-colors" data-hover>GITHUB</a>
+                    <a href="https://linkedin.com/in/natnael-k-23051021a" class="font-mono text-[10px] hover transition-colors" data-hover>LINKEDIN</a>
+                    <a href="#" class="font-mono text-[10px] hover transition-colors" data-hover>X</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script type="module" src="js/main.js"></script>
 </body>
